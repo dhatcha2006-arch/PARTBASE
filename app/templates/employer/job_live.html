@@ -21,7 +21,7 @@
 
         <div class="d-grid gap-2 mb-3">
           {% if job %}
-            {% set share_text = "Micro-job in Chennai: " ~ job.title ~ " at " ~ shop.shop_name ~ " (₹" ~ job.pay_amount ~ "/" ~ job.pay_type ~ "). Apply now on LocalVelai!" %}
+            {% set share_text = "Micro-job in Chennai: " ~ job.title ~ " at " ~ shop.shop_name ~ " (₹" ~ job.pay_amount ~ "/" ~ job.pay_type ~ "). Apply now on PARTBASE!" %}
             <a href="https://wa.me/?text={{ share_text|urlencode }}" target="_blank" class="btn btn-lv-success py-2 fw-bold">
               <i class="bi bi-whatsapp me-1"></i> Share on WhatsApp
             </a>

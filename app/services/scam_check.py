@@ -49,7 +49,7 @@ class ScamCheckService:
             return {
                 "ok": False,
                 "flags": flags,
-                "message": "This looks like a fee request. Jobs that ask for money are not allowed on LocalVelai. Please remove it.",
+                "message": "This looks like a fee request. Jobs that ask for money are not allowed on PARTBASE. Please remove it.",
                 "banner_text": "Safety check: blocked. Remove the fee or advance to publish."
             }
 

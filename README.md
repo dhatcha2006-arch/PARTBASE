@@ -1,4 +1,4 @@
-# LocalVelai — Hyper-local Micro-job Platform for Chennai
+# PARTBASE — Hyper-local Micro-job Platform for Chennai
 
 > Connecting neighborhood shops with nearby students and homemakers in Chennai (pilot: **OMR** and **Anna Nagar**) for same-day, flexible micro-jobs.
 
@@ -133,7 +133,7 @@ pytest
 
 | Role | Name | Phone Number | Area |
 | :--- | :--- | :--- | :--- |
-| **Admin** | LocalVelai Admin | `+919876500000` | Anna Nagar |
+| **Admin** | PARTBASE Admin | `+919876500000` | Anna Nagar |
 | **Employer** | Murugan (Sri Murugan Tailors) | `+919876543210` | Thoraipakkam |
 | **Employer** | Anand (Anand Stores) | `+919876543211` | Thoraipakkam |
 | **Employer** | Meena R (Meena Fancy Store) | `+919876543212` | Neelankarai |
