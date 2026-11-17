@@ -61,13 +61,13 @@ def setup():
     return render_template("seeker/setup.html", user=user, areas=areas)
 
 @seeker_bp.route("/jobs")
-@seeker_required
 def jobs():
-    user = User.query.get(session["user_id"])
-    profile = user.seeker_profile
+    user_id = session.get("user_id")
+    user = User.query.get(user_id) if user_id else None
+    profile = user.seeker_profile if user else None
 
     # Filters from query params
-    area_id = request.args.get("area_id", type=int) or user.area_id or (Area.query.first().id if Area.query.first() else 1)
+    area_id = request.args.get("area_id", type=int) or (user.area_id if user else None) or (Area.query.first().id if Area.query.first() else 1)
     radius = request.args.get("radius", default=3.0, type=float)
     day_filter = request.args.get("day", default="")
     timing_filter = request.args.get("timing", default="")
@@ -79,11 +79,11 @@ def jobs():
         selected_categories = [i.strip() for i in profile.interests.split(",") if i.strip()]
 
     selected_area = Area.query.get(area_id)
-    center_lat = user.lat or (selected_area.lat if selected_area else 12.9352)
-    center_lng = user.lng or (selected_area.lng if selected_area else 80.2290)
+    center_lat = (user.lat if user and user.lat else (selected_area.lat if selected_area else 12.9352))
+    center_lng = (user.lng if user and user.lng else (selected_area.lng if selected_area else 80.2290))
 
     # Exclude jobs already applied to
-    applied_job_ids = [a.job_id for a in Application.query.filter_by(seeker_id=user.id).all()]
+    applied_job_ids = [a.job_id for a in Application.query.filter_by(seeker_id=user.id).all()] if user else []
 
     # Query open jobs
     query = Job.query.filter(Job.status == "open")
@@ -130,22 +130,23 @@ def jobs():
     )
 
 @seeker_bp.route("/jobs/<int:job_id>", methods=["GET", "POST"])
-@seeker_required
 def job_detail(job_id):
-    user = User.query.get(session["user_id"])
+    user_id = session.get("user_id")
+    user = User.query.get(user_id) if user_id else None
     job = Job.query.get_or_404(job_id)
 
     # Record view
-    existing_view = View.query.filter_by(job_id=job.id, seeker_id=user.id).first()
-    if not existing_view:
-        view = View(job_id=job.id, seeker_id=user.id)
-        db.session.add(view)
-        job.view_count += 1
-        db.session.commit()
+    if user:
+        existing_view = View.query.filter_by(job_id=job.id, seeker_id=user.id).first()
+        if not existing_view:
+            view = View(job_id=job.id, seeker_id=user.id)
+            db.session.add(view)
+            job.view_count += 1
+            db.session.commit()
 
     # Distance calculation
-    seeker_lat = user.lat or (user.area.lat if user.area else 12.9352)
-    seeker_lng = user.lng or (user.area.lng if user.area else 80.2290)
+    seeker_lat = (user.lat if user and user.lat else (user.area.lat if user and user.area else 12.9352))
+    seeker_lng = (user.lng if user and user.lng else (user.area.lng if user and user.area else 80.2290))
     shop_lat = job.shop.lat if job.shop and job.shop.lat else (job.shop.area.lat if job.shop and job.shop.area else seeker_lat)
     shop_lng = job.shop.lng if job.shop and job.shop.lng else (job.shop.area.lng if job.shop and job.shop.area else seeker_lng)
     distance = haversine_distance(seeker_lat, seeker_lng, shop_lat, shop_lng)
@@ -155,7 +156,7 @@ def job_detail(job_id):
     directions_url = build_google_maps_url(job.shop.shop_name, area_name)
 
     # Check if already applied
-    existing_app = Application.query.filter_by(job_id=job.id, seeker_id=user.id).first()
+    existing_app = Application.query.filter_by(job_id=job.id, seeker_id=user.id).first() if user else None
 
     # Similar jobs if closed/filled
     similar_jobs = []
@@ -167,6 +168,11 @@ def job_detail(job_id):
         ).limit(3).all()
 
     if request.method == "POST":
+        if not user:
+            session["intent_role"] = "seeker"
+            flash("Please sign in or use 1-click Demo Seeker to apply for this job.", "info")
+            return redirect(url_for("auth.login"))
+
         if job.status != "open" or job.is_filled:
             flash("This job is already filled or closed.", "warning")
             return redirect(url_for("seeker.job_detail", job_id=job.id))

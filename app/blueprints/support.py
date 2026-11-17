@@ -7,13 +7,13 @@ support_bp = Blueprint("support", __name__)
 @support_bp.route("/support", methods=["GET", "POST"])
 def support():
     user_id = session.get("user_id")
-    if not user_id:
-        return redirect(url_for("auth.login"))
-
-    user = User.query.get(user_id)
-    current_role = session.get("role", user.active_role or "seeker")
+    user = User.query.get(user_id) if user_id else None
+    current_role = session.get("role", user.active_role if user else "seeker")
 
     if request.method == "POST":
+        if not user:
+            flash("Please sign in or use 1-click Demo to raise a support ticket.", "info")
+            return redirect(url_for("auth.login"))
         issue_type = request.form.get("issue_type", "other")
         job_id = request.form.get("job_id", type=int)
         description = request.form.get("description", "").strip()
@@ -37,13 +37,13 @@ def support():
         return redirect(url_for("support.support"))
 
     # Fetch user's tickets and related jobs
-    my_tickets = Ticket.query.filter_by(raised_by_id=user.id).order_by(Ticket.created_at.desc()).all()
+    my_tickets = Ticket.query.filter_by(raised_by_id=user.id).order_by(Ticket.created_at.desc()).all() if user else []
     user_jobs = []
-    if current_role == "employer" and user.shop:
-        user_jobs = Job.query.filter_by(shop_id=user.shop.id).all()
-    else:
-        # Seeker jobs from applications
-        user_jobs = [a.job for a in user.applications if a.job]
+    if user:
+        if current_role == "employer" and user.shop:
+            user_jobs = Job.query.filter_by(shop_id=user.shop.id).all()
+        else:
+            user_jobs = [a.job for a in user.applications if a.job]
 
     return render_template(
         "support.html",

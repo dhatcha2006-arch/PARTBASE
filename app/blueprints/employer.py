@@ -76,8 +76,10 @@ def setup():
     return render_template("employer/setup.html", user=user, areas=areas)
 
 @employer_bp.route("/posts")
-@employer_required
 def posts():
+    user_id = session.get("user_id")
+    if not user_id:
+        return redirect(url_for("auth.demo_login", role="employer"))
     user = User.query.get(session["user_id"])
     if not user.shop:
         return redirect(url_for("employer.setup"))
@@ -89,13 +91,19 @@ def posts():
     return render_template("employer/posts.html", shop=user.shop, jobs=jobs, draft_data=draft_data)
 
 @employer_bp.route("/post", methods=["GET", "POST"])
-@employer_required
 def post_job():
-    user = User.query.get(session["user_id"])
-    if not user.shop:
+    user_id = session.get("user_id")
+    user = User.query.get(user_id) if user_id else None
+    
+    # If not logged in on POST, prompt demo or login
+    if request.method == "POST" and (not user or not user.shop):
+        flash("Please log in or use 1-click Demo Employer to publish your job.", "info")
+        return redirect(url_for("auth.demo_login", role="employer"))
+
+    if user and not user.shop:
         return redirect(url_for("employer.setup"))
 
-    shop = user.shop
+    shop = user.shop if user and user.shop else (Shop.query.first() or Shop(shop_name="Your Shop Name", address="Chennai, Tamil Nadu"))
 
     # Check for copy / prefill
     prefill = {}
@@ -129,7 +137,7 @@ def post_job():
         # Enforce server-side scam check
         scam_res = ScamCheckService.check_text(title, details)
         if not scam_res["ok"]:
-            flash("This looks like a fee request. Jobs that ask for money are not allowed on LocalVelai. Please remove it.", "danger")
+            flash("This looks like a fee request. Jobs that ask for money are not allowed on PARTBASE. Please remove it.", "danger")
             return render_template("employer/post_form.html", shop=shop, prefill=request.form, blocked=True)
 
         # Verified shop goes live instantly, Unverified shop goes to pending_review

@@ -13,9 +13,11 @@ def admin_required(f):
         user_id = session.get("user_id")
         if not user_id:
             return redirect(url_for("admin.login"))
+        if session.get("is_admin"):
+            return f(*args, **kwargs)
         user = User.query.get(user_id)
         is_admin_phone = user and (user.phone in current_app.config.get("ADMIN_PHONES", []))
-        if not user or not (user.is_admin or is_admin_phone or session.get("is_admin")):
+        if not user or not (user.is_admin or is_admin_phone):
             return redirect(url_for("admin.access_denied"))
         return f(*args, **kwargs)
     return decorated_function
