@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container py-4">
+<div class="container py-3">
   <!-- Top Safety Banner -->
   {% include 'components/_safety_banner.html' %}
 
@@ -9,27 +9,48 @@
   <div class="row align-items-center my-4 py-2">
     <div class="col-lg-6 mb-4 mb-lg-0">
       <div class="mb-3">
-        <span class="chip-pilot"><i class="bi bi-geo-alt-fill me-1"></i> Pilot: OMR / Anna Nagar</span>
+        <span class="badge-chennai"><i class="bi bi-geo-alt-fill me-1 text-danger"></i> Chennai (OMR & Anna Nagar)</span>
       </div>
-      <h1 class="hero-title mb-3">Jobs near you.<br>Today.</h1>
-      <p class="hero-subtitle mb-4">
-        A tailor who needs two helpers this weekend posts in 30 seconds. Students and homemakers within 3 km tap Apply or Call and start the same day.
+      <h1 class="hero-title mb-3">Jobs near you.<br><span class="text-primary">Today.</span></h1>
+      <p class="hero-subtitle mb-4 text-secondary">
+        A neighborhood shop that needs two helpers this weekend posts in 30 seconds. Students and homemakers within 3 km tap Apply or Call and start the same day.
       </p>
 
-      <div class="d-flex flex-wrap gap-3">
-        <a href="{{ url_for('auth.select_role', role='seeker') }}" class="btn btn-lv-success btn-lg px-4 shadow-sm">
-          <i class="bi bi-search me-1"></i> I want a job
+      <div class="d-flex flex-wrap gap-3 mb-4">
+        <a href="{{ url_for('seeker.jobs') }}" class="btn btn-lv-success btn-lg px-4 shadow">
+          <i class="bi bi-search me-2"></i> Browse All Jobs
         </a>
-        <a href="{{ url_for('auth.select_role', role='employer') }}" class="btn btn-lv-primary btn-lg px-4 shadow-sm">
-          <i class="bi bi-plus-circle me-1"></i> I want to hire
+        <a href="{{ url_for('employer.post_job') }}" class="btn btn-lv-primary btn-lg px-4 shadow">
+          <i class="bi bi-plus-circle me-2"></i> Post a Job (Free)
         </a>
+      </div>
+
+      <!-- Quick Demo Login Badges -->
+      <div class="p-3 bg-white rounded-3 border shadow-sm">
+        <div class="small fw-bold text-muted text-uppercase mb-2">
+          <i class="bi bi-lightning-charge-fill text-warning me-1"></i> Quick 1-Click Evaluation Accounts
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="{{ url_for('auth.demo_login', role='seeker') }}" class="btn btn-sm btn-outline-primary fw-semibold">
+            <i class="bi bi-person me-1"></i> Demo Seeker
+          </a>
+          <a href="{{ url_for('auth.demo_login', role='employer') }}" class="btn btn-sm btn-outline-success fw-semibold">
+            <i class="bi bi-shop me-1"></i> Demo Employer
+          </a>
+          <a href="{{ url_for('auth.demo_login', role='admin') }}" class="btn btn-sm btn-outline-dark fw-semibold">
+            <i class="bi bi-shield-check me-1"></i> Demo Admin
+          </a>
+        </div>
       </div>
     </div>
 
     <!-- Sample Job Cards (Preview) -->
     <div class="col-lg-6">
-      <div class="p-3 bg-white rounded-3 shadow-sm border">
-        <h6 class="text-muted fw-bold text-uppercase small mb-3">Live Micro-Jobs Near You</h6>
+      <div class="p-3 bg-white rounded-3 shadow border">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h6 class="text-muted fw-bold text-uppercase small mb-0">Live Micro-Jobs Feed</h6>
+          <a href="{{ url_for('seeker.jobs') }}" class="text-decoration-none small fw-bold text-primary">View all ↗</a>
+        </div>
 
         <!-- Sample 1 -->
         <div class="lv-card p-3 mb-3 border">
@@ -44,8 +65,8 @@
             <div class="text-end">
               <span class="fs-5 fw-bold text-primary">₹120/hr</span>
               <div class="mt-1">
-                <a href="{{ url_for('auth.select_role', role='seeker') }}" class="btn btn-sm btn-outline-secondary py-0 px-2 me-1">Call</a>
-                <a href="{{ url_for('auth.select_role', role='seeker') }}" class="btn btn-sm btn-primary py-0 px-2">Apply</a>
+                <a href="tel:+919876543210" class="btn btn-sm btn-outline-secondary py-0 px-2 me-1">Call</a>
+                <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary py-0 px-2">Apply</a>
               </div>
             </div>
           </div>
@@ -64,11 +85,70 @@
             <div class="text-end">
               <span class="fs-5 fw-bold text-primary">₹600/day</span>
               <div class="mt-1">
-                <a href="{{ url_for('auth.select_role', role='seeker') }}" class="btn btn-sm btn-outline-secondary py-0 px-2 me-1">Call</a>
-                <a href="{{ url_for('auth.select_role', role='seeker') }}" class="btn btn-sm btn-primary py-0 px-2">Apply</a>
+                <a href="tel:+919840123456" class="btn btn-sm btn-outline-secondary py-0 px-2 me-1">Call</a>
+                <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary py-0 px-2">Apply</a>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Explore All 4 Portals Showcase -->
+  <div class="my-5">
+    <div class="text-center mb-4">
+      <span class="text-primary fw-bold text-uppercase small">Full Platform Access</span>
+      <h3 class="fw-bold text-dark">Explore All 4 Modules (No Login Required)</h3>
+      <p class="text-muted">Browse every section right away without mandatory login hurdles.</p>
+    </div>
+
+    <div class="row g-3">
+      <!-- Portal 1 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="lv-card h-100 p-4 border-top border-4 border-primary text-center">
+          <div class="fs-1 text-primary mb-2"><i class="bi bi-search"></i></div>
+          <h5 class="fw-bold mb-2">1. Browse Jobs</h5>
+          <p class="text-muted small mb-3">Live Chennai jobs feed with radius filters, category tags, and pay rates.</p>
+          <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary w-100">
+            Open Jobs Feed ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Portal 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="lv-card h-100 p-4 border-top border-4 border-success text-center">
+          <div class="fs-1 text-success mb-2"><i class="bi bi-pencil-square"></i></div>
+          <h5 class="fw-bold mb-2">2. Post a Job</h5>
+          <p class="text-muted small mb-3">30-second employer posting interface with wage calculator & instant scam check.</p>
+          <a href="{{ url_for('employer.post_job') }}" class="btn btn-sm btn-lv-success w-100">
+            Open Post Job ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Portal 3 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="lv-card h-100 p-4 border-top border-4 border-danger text-center">
+          <div class="fs-1 text-danger mb-2"><i class="bi bi-shield-check"></i></div>
+          <h5 class="fw-bold mb-2">3. Admin Portal</h5>
+          <p class="text-muted small mb-3">Report queue moderation, employer GST/shop verification, and audit logs.</p>
+          <a href="{{ url_for('auth.demo_login', role='admin') }}" class="btn btn-sm btn-lv-danger w-100">
+            Open Admin Panel ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Portal 4 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="lv-card h-100 p-4 border-top border-4 border-info text-center">
+          <div class="fs-1 text-info mb-2"><i class="bi bi-headset"></i></div>
+          <h5 class="fw-bold mb-2">4. Support Center</h5>
+          <p class="text-muted small mb-3">Ticket submission, fraud prevention guide, and safety dispute resolution.</p>
+          <a href="{{ url_for('support.support') }}" class="btn btn-sm btn-lv-teal w-100">
+            Open Support ↗
+          </a>
         </div>
       </div>
     </div>
@@ -101,7 +181,7 @@
 
   <!-- How it Works (3 Steps) -->
   <div class="lv-card p-4 my-4" id="how-it-works">
-    <h4 class="fw-bold mb-4 text-center">How LocalVelai Works</h4>
+    <h4 class="fw-bold mb-4 text-center">How PARTBASE Works</h4>
     <div class="row text-center g-4">
       <div class="col-md-4">
         <div class="badge bg-primary rounded-circle p-3 fs-5 mb-2">1</div>

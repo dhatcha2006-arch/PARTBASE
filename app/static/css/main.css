@@ -1,4 +1,4 @@
-/* LocalVelai Brand Design System */
+/* PARTBASE Modern SaaS Design System */
 :root {
   --lv-navy: #1B3A6B;
   --lv-navy-dark: #12284b;
@@ -168,23 +168,31 @@ main {
 
 /* Buttons (min 44px tap targets) */
 .btn-lv-primary {
-  background-color: #2563EB;
-  border-color: #2563EB;
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  border: 1px solid #1D4ED8;
+  color: #FFFFFF !important;
   font-weight: 600;
   min-height: 44px;
   padding: 0.5rem 1.25rem;
-  border-radius: 8px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-lv-primary:hover {
-  background-color: #1D4ED8;
-  border-color: #1D4ED8;
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  border-color: #1E40AF;
+  color: #FFFFFF !important;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.32);
+}
+
+.btn-lv-primary:active {
+  transform: translateY(0);
 }
 
 .btn-lv-teal {
@@ -204,19 +212,31 @@ main {
 }
 
 .btn-lv-success {
-  background-color: #16A34A;
-  border-color: #16A34A;
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  border: 1px solid #059669;
+  color: #FFFFFF !important;
   font-weight: 600;
   min-height: 44px;
   padding: 0.5rem 1.25rem;
-  border-radius: 8px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.22);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-lv-success:hover {
-  background-color: #15803D;
-  border-color: #15803D;
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  border-color: #047857;
+  color: #FFFFFF !important;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.32);
+}
+
+.btn-lv-success:active {
+  transform: translateY(0);
 }
 
 .btn-lv-outline {
@@ -385,4 +405,17 @@ main {
 .admin-sidebar a:hover, .admin-sidebar a.active {
   background: #2563EB;
   color: #FFFFFF;
+}
+
+/* Chennai Location Badge */
+.badge-chennai {
+  background-color: #F1F5F9;
+  color: #0F172A;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #CBD5E1;
 }

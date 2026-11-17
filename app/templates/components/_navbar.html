@@ -1,64 +1,41 @@
-<nav class="navbar navbar-expand-lg lv-navbar">
+<nav class="navbar navbar-expand-lg lv-navbar sticky-top shadow-sm">
   <div class="container">
     <a class="lv-logo" href="{{ url_for('auth.landing') }}">
-      <span class="lv-logo-badge">LV</span>
-      <span>LocalVelai</span>
+      <span class="lv-logo-badge">PB</span>
+      <span>PARTBASE</span>
     </a>
 
-    <button class="navbar-toggler text-white border-0" type="button" data-bs-dismiss="collapse" data-bs-target="#lvNavbarContent" aria-controls="lvNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#lvNavbarContent" aria-controls="lvNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="bi bi-list fs-2"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="lvNavbarContent">
+      <!-- 4 Core Portals Nav Links Visible To All -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
-        {% if current_user %}
-          {% if active_role == 'seeker' %}
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('seeker.jobs') }}"><i class="bi bi-briefcase me-1"></i> Jobs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('seeker.map_helper') }}" target="_blank"><i class="bi bi-map me-1"></i> Map ↗</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('seeker.applications') }}"><i class="bi bi-check2-circle me-1"></i> Applied</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('support.profile') }}"><i class="bi bi-person me-1"></i> Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('support.support') }}"><i class="bi bi-headset me-1"></i> Support</a>
-            </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('employer.posts') }}"><i class="bi bi-card-list me-1"></i> My posts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('employer.post_job') }}"><i class="bi bi-plus-circle me-1"></i> Post a job</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('support.profile') }}"><i class="bi bi-person me-1"></i> Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link lv-nav-link" href="{{ url_for('support.support') }}"><i class="bi bi-headset me-1"></i> Support</a>
-            </li>
-          {% endif %}
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link lv-nav-link" href="{{ url_for('auth.select_role', role='seeker') }}">Jobs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link lv-nav-link" href="{{ url_for('auth.select_role', role='employer') }}">For shops</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link lv-nav-link" href="#safety">Safety</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link lv-nav-link" href="#how-it-works">How it works</a>
-          </li>
-        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link lv-nav-link" href="{{ url_for('seeker.jobs') }}">
+            <i class="bi bi-briefcase-fill me-1 text-info"></i> Browse Jobs
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link lv-nav-link" href="{{ url_for('employer.post_job') }}">
+            <i class="bi bi-plus-circle-fill me-1 text-success"></i> Post a Job
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link lv-nav-link" href="{% if session.get('is_admin') %}{{ url_for('admin.reports') }}{% else %}{{ url_for('admin.login') }}{% endif %}">
+            <i class="bi bi-shield-lock-fill me-1 text-warning"></i> Admin Portal
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link lv-nav-link" href="{{ url_for('support.support') }}">
+            <i class="bi bi-headset me-1 text-primary"></i> Support
+          </a>
+        </li>
       </ul>
 
-      <div class="d-flex align-items-center gap-2">
+      <!-- User & Quick Demo Login Controls -->
+      <div class="d-flex align-items-center flex-wrap gap-2">
         {% if current_user %}
           {% if active_role == 'seeker' %}
             <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-semibold border">
@@ -66,16 +43,43 @@
             </span>
           {% else %}
             <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-semibold border d-flex align-items-center gap-1">
-              <i class="bi bi-shop text-primary"></i> {{ current_user.shop.shop_name if current_user.shop else 'Shop' }}
+              <i class="bi bi-shop text-primary"></i> {{ current_user.shop.shop_name if current_user.shop else 'Employer' }}
               {% if current_user.shop and current_user.shop.is_verified %}
                 <span class="chip-verified ms-1"><i class="bi bi-patch-check-fill"></i> Verified</span>
               {% endif %}
             </span>
           {% endif %}
-          <a href="{{ url_for('auth.logout') }}" class="btn btn-sm btn-outline-light ms-2">Sign out</a>
+          <a href="{{ url_for('auth.logout') }}" class="btn btn-sm btn-outline-light ms-1">Sign out</a>
         {% else %}
-          <a href="{{ url_for('auth.select_role', role='seeker') }}" class="btn btn-sm btn-lv-primary">Find a job</a>
-          <a href="{{ url_for('auth.select_role', role='employer') }}" class="btn btn-sm btn-outline-light">Post a job</a>
+          <!-- 1-Click Demo Login Dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-warning dropdown-toggle fw-bold text-dark shadow-sm" type="button" id="demoLoginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-lightning-charge-fill me-1"></i> Demo Login
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="demoLoginDropdown">
+              <li><h6 class="dropdown-header text-uppercase small fw-bold">Instant 1-Click Access</h6></li>
+              <li>
+                <a class="dropdown-item py-2" href="{{ url_for('auth.demo_login', role='seeker') }}">
+                  <i class="bi bi-person-badge text-primary me-2"></i><strong>Demo Seeker</strong> (Priya K)
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item py-2" href="{{ url_for('auth.demo_login', role='employer') }}">
+                  <i class="bi bi-shop text-success me-2"></i><strong>Demo Employer</strong> (Murugan Tailors)
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item py-2" href="{{ url_for('auth.demo_login', role='admin') }}">
+                  <i class="bi bi-shield-check text-danger me-2"></i><strong>Demo Admin</strong> (Moderator)
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <a href="{{ url_for('auth.login') }}" class="btn btn-sm btn-lv-primary shadow-sm">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+          </a>
         {% endif %}
       </div>
     </div>
