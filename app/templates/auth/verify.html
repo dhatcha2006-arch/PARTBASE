@@ -5,7 +5,7 @@
   <div class="row min-vh-75 align-items-center justify-content-center">
     <!-- Left Hero Column -->
     <div class="col-lg-5 mb-4 mb-lg-0 text-center text-lg-start">
-      <h1 class="hero-title mb-3">Jobs near you.<br>Today.</h1>
+      <h1 class="hero-title mb-3">Jobs near you.<br><span class="text-primary text-gradient">Today.</span></h1>
       <p class="hero-subtitle mb-4">Hyper-local micro-jobs for Chennai</p>
       {% include 'components/_safety_banner.html' %}
     </div>
@@ -14,7 +14,7 @@
     <div class="col-lg-5 col-md-8">
       <div class="lv-card p-4 p-md-5">
         <h3 class="fw-bold mb-1">Verify OTP</h3>
-        <p class="text-muted small mb-3">
+        <p class="text-muted small mb-4">
           Sent to <span class="fw-bold text-dark">{{ mask_phone(phone) }}</span> ·
           <a href="{{ url_for('auth.login') }}" class="text-decoration-none">Edit number</a>
         </p>
@@ -33,21 +33,17 @@
             <input type="text" class="otp-box" name="otp_6" maxlength="1" inputmode="numeric" pattern="[0-9]*" required>
           </div>
 
-          <div class="alert alert-info py-2 px-3 small mb-3 border-0 d-flex justify-content-between align-items-center">
-              <div><i class="bi bi-key-fill me-1"></i> Dev / Demo OTP: <strong>123456</strong></div>
-              <button type="button" class="btn btn-sm btn-outline-primary py-0 px-2" onclick="fillDemoOtp()">Fill 123456</button>
-            </div>
-            <div class="d-flex justify-content-between align-items-center text-muted small mb-3">
+          <div class="d-flex justify-content-between align-items-center text-muted small mb-3">
             <span>Resend OTP in <span id="otp-timer" class="fw-bold text-primary">0:30</span></span>
-            <span>OTP expires in 5 minutes</span>
+            <span>Expires in 5 mins</span>
           </div>
 
-          <button type="submit" class="btn btn-lv-primary w-100 py-2 fs-6 fw-bold mb-3">
-            Verify
+          <button type="submit" class="btn btn-lv-primary w-100 py-2 fs-6 fw-bold mb-3 shadow">
+            Verify & Continue
           </button>
 
           <div class="alert alert-warning py-2 px-3 small mb-0 border-0 text-center" style="background-color: #FEF3C7; color: #92400E;">
-            <i class="bi bi-shield-exclamation me-1"></i> 3 wrong tries lock the number for 10 minutes.
+            <i class="bi bi-shield-exclamation me-1"></i> 3 incorrect tries lock the number for 10 minutes.
           </div>
         </form>
       </div>
@@ -57,16 +53,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
-function fillDemoOtp() {
-  const digits = ['1', '2', '3', '4', '5', '6'];
-  digits.forEach((d, idx) => {
-    const el = document.querySelector(`input[name="otp_${idx + 1}"]`);
-    if (el) el.value = d;
-  });
-  const full = document.getElementById("otp-full-code");
-  if (full) full.value = "123456";
-}
-</script>
 <script src="{{ url_for('static', filename='js/otp.js') }}"></script>
 {% endblock %}

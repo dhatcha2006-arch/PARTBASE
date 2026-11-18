@@ -5,57 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Login — PARTBASE</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
-<body style="background-color: #0F172A; color: #FFFFFF;">
-  <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center py-4">
-    <div class="text-center mb-4">
-      <div class="d-inline-flex align-items-center gap-2 mb-2">
-        <span class="lv-logo-badge bg-primary">LV</span>
-        <span class="fs-4 fw-bold text-white">PARTBASE Admin</span>
-      </div>
-      <div class="text-muted small">Team login · approved admin numbers only</div>
-    </div>
+<body class="d-flex align-items-center min-vh-100 bg-light">
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-5 col-lg-4">
+        <div class="lv-card p-4 p-md-5 bg-white border-0 shadow">
+          <div class="text-center mb-4">
+            <span class="lv-logo-badge bg-danger fs-5 px-3 py-2 rounded-3 mb-2 d-inline-block">PB</span>
+            <h4 class="fw-bold text-dark mt-2">PARTBASE Admin</h4>
+            <p class="text-muted small">Moderation & Platform Governance</p>
+          </div>
 
-    <div class="card p-4 p-md-5 border-0 shadow-lg text-dark" style="max-width: 440px; width: 100%; border-radius: 12px;">
-      <h3 class="fw-bold mb-1">Admin sign in</h3>
-      <p class="text-muted small mb-4">No password. We send a 6-digit OTP.</p>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category if category != 'error' else 'danger' }} small py-2 px-3">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
 
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          {% for category, message in messages %}
-            <div class="alert alert-{{ category if category != 'error' else 'danger' }} small py-2">
-              {{ message }}
+          <form method="POST" action="{{ url_for('admin.login') }}" class="prevent-double-submit">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-muted">Admin Mobile Number</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light text-muted fw-bold">+91</span>
+                <input type="tel" name="phone" class="form-control" placeholder="98765 00000" required autofocus>
+              </div>
+              <div class="form-text small text-muted">Restricted to authorized administrator phone numbers only.</div>
             </div>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
 
-      <div class="mb-4 p-3 bg-light rounded border text-center">
-              <div class="small fw-bold text-muted mb-2">EVALUATION ACCESS</div>
-              <a href="{{ url_for('auth.demo_login', role='admin') }}" class="btn btn-sm btn-danger fw-bold w-100 py-2">
-                <i class="bi bi-shield-check me-1"></i> 1-Click Instant Admin Access
+            <button type="submit" class="btn btn-danger w-100 py-2 fw-bold shadow-sm mb-3">
+              <i class="bi bi-shield-lock-fill me-1"></i> Admin Sign In
+            </button>
+
+            <div class="text-center">
+              <a href="{{ url_for('auth.landing') }}" class="text-decoration-none small text-muted">
+                ← Back to PARTBASE Home
               </a>
             </div>
-            <div class="text-center my-3 text-muted small">── OR ADMIN PHONE LOGIN ──</div>
-            <form method="POST"  action="{{ url_for('admin.login') }}">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-        <div class="mb-4">
-          <label class="form-label small fw-semibold">Admin mobile number</label>
-          <input type="tel" name="phone" class="form-control form-control-lg fs-6" placeholder="+91 98xxx xxxxx" value="+919876500000" required autofocus>
+          </form>
         </div>
-
-        <button type="submit" class="btn btn-primary w-100 py-2 fs-6 fw-bold mb-3">
-          Send OTP
-        </button>
-
-        <div class="text-center">
-          <a href="{{ url_for('auth.landing') }}" class="text-decoration-none small text-muted">
-            ← Back to PARTBASE
-          </a>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </body>

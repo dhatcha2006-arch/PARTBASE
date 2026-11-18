@@ -9,50 +9,57 @@
   <div class="row align-items-center my-4 py-2">
     <div class="col-lg-6 mb-4 mb-lg-0">
       <div class="mb-3">
-        <span class="badge-chennai"><i class="bi bi-geo-alt-fill me-1 text-danger"></i> Chennai (OMR & Anna Nagar)</span>
+        <span class="badge-chennai">
+          <i class="bi bi-geo-alt-fill me-1 text-danger"></i> Chennai (OMR & Anna Nagar)
+        </span>
       </div>
-      <h1 class="hero-title mb-3">Jobs near you.<br><span class="text-primary">Today.</span></h1>
+      <h1 class="hero-title mb-3">
+        Jobs near you.<br>
+        <span class="text-primary text-gradient">Today.</span>
+      </h1>
       <p class="hero-subtitle mb-4 text-secondary">
-        A neighborhood shop that needs two helpers this weekend posts in 30 seconds. Students and homemakers within 3 km tap Apply or Call and start the same day.
+        A neighborhood shop needing 2 helpers this weekend posts in 30 seconds. Students and homemakers within 3 km apply directly and start the same day with daily payouts.
       </p>
 
       <div class="d-flex flex-wrap gap-3 mb-4">
         <a href="{{ url_for('seeker.jobs') }}" class="btn btn-lv-success btn-lg px-4 shadow">
-          <i class="bi bi-search me-2"></i> Browse All Jobs
+          <i class="bi bi-search me-2"></i> Find Jobs Near You
         </a>
         <a href="{{ url_for('employer.post_job') }}" class="btn btn-lv-primary btn-lg px-4 shadow">
           <i class="bi bi-plus-circle me-2"></i> Post a Job (Free)
         </a>
       </div>
 
-      <!-- Quick Demo Login Badges -->
-      <div class="p-3 bg-white rounded-3 border shadow-sm">
-        <div class="small fw-bold text-muted text-uppercase mb-2">
-          <i class="bi bi-lightning-charge-fill text-warning me-1"></i> Quick 1-Click Evaluation Accounts
+      <!-- Trust Badges -->
+      <div class="d-flex flex-wrap align-items-center gap-3 pt-2 text-muted small">
+        <div class="d-flex align-items-center gap-1">
+          <i class="bi bi-shield-check text-success fs-5"></i>
+          <span>100% Free for Seekers</span>
         </div>
-        <div class="d-flex flex-wrap gap-2">
-          <a href="{{ url_for('auth.demo_login', role='seeker') }}" class="btn btn-sm btn-outline-primary fw-semibold">
-            <i class="bi bi-person me-1"></i> Demo Seeker
-          </a>
-          <a href="{{ url_for('auth.demo_login', role='employer') }}" class="btn btn-sm btn-outline-success fw-semibold">
-            <i class="bi bi-shop me-1"></i> Demo Employer
-          </a>
-          <a href="{{ url_for('auth.demo_login', role='admin') }}" class="btn btn-sm btn-outline-dark fw-semibold">
-            <i class="bi bi-shield-check me-1"></i> Demo Admin
-          </a>
+        <div class="d-flex align-items-center gap-1">
+          <i class="bi bi-clock-history text-primary fs-5"></i>
+          <span>30s Fast Posting</span>
+        </div>
+        <div class="d-flex align-items-center gap-1">
+          <i class="bi bi-cash-stack text-warning fs-5"></i>
+          <span>Same-Day Settlement</span>
         </div>
       </div>
     </div>
 
-    <!-- Sample Job Cards (Preview) -->
+    <!-- Live Preview Job Feed -->
     <div class="col-lg-6">
       <div class="p-3 bg-white rounded-3 shadow border">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h6 class="text-muted fw-bold text-uppercase small mb-0">Live Micro-Jobs Feed</h6>
-          <a href="{{ url_for('seeker.jobs') }}" class="text-decoration-none small fw-bold text-primary">View all ↗</a>
+          <h6 class="text-muted fw-bold text-uppercase small mb-0">
+            <span class="live-indicator me-1"></span> Live Openings Near You
+          </h6>
+          <a href="{{ url_for('seeker.jobs') }}" class="text-decoration-none small fw-bold text-primary">
+            Explore all openings ↗
+          </a>
         </div>
 
-        <!-- Sample 1 -->
+        <!-- Sample Card 1 -->
         <div class="lv-card p-3 mb-3 border">
           <div class="d-flex justify-content-between align-items-start">
             <div>
@@ -60,19 +67,22 @@
                 <span class="fw-bold text-dark fs-5">Shop helper</span>
                 <span class="chip-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
               </div>
-              <div class="text-muted small">Sri Murugan Tailors · Today, 5–9 pm · 1.2 km</div>
+              <div class="text-muted small">
+                Sri Murugan Tailors · Today, 5–9 pm · <span class="fw-semibold text-dark">1.2 km</span> (Thoraipakkam, OMR)
+              </div>
             </div>
             <div class="text-end">
               <span class="fs-5 fw-bold text-primary">₹120/hr</span>
               <div class="mt-1">
-                <a href="tel:+919876543210" class="btn btn-sm btn-outline-secondary py-0 px-2 me-1">Call</a>
-                <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary py-0 px-2">Apply</a>
+                <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary py-1 px-3">
+                  Apply ↗
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Sample 2 -->
+        <!-- Sample Card 2 -->
         <div class="lv-card p-3 mb-0 border">
           <div class="d-flex justify-content-between align-items-start">
             <div>
@@ -80,13 +90,16 @@
                 <span class="fw-bold text-dark fs-5">Packing helper</span>
                 <span class="chip-urgent"><i class="bi bi-lightning-charge-fill"></i> Urgent</span>
               </div>
-              <div class="text-muted small">Anand Stores · Today · 0.8 km</div>
+              <div class="text-muted small">
+                Anand Stores · Today · <span class="fw-semibold text-dark">0.8 km</span> (Anna Nagar West)
+              </div>
             </div>
             <div class="text-end">
               <span class="fs-5 fw-bold text-primary">₹600/day</span>
               <div class="mt-1">
-                <a href="tel:+919840123456" class="btn btn-sm btn-outline-secondary py-0 px-2 me-1">Call</a>
-                <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary py-0 px-2">Apply</a>
+                <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary py-1 px-3">
+                  Apply ↗
+                </a>
               </div>
             </div>
           </div>
@@ -95,61 +108,56 @@
     </div>
   </div>
 
-  <!-- Explore All 4 Portals Showcase -->
+  <!-- Category Highlights Section -->
   <div class="my-5">
     <div class="text-center mb-4">
-      <span class="text-primary fw-bold text-uppercase small">Full Platform Access</span>
-      <h3 class="fw-bold text-dark">Explore All 4 Modules (No Login Required)</h3>
-      <p class="text-muted">Browse every section right away without mandatory login hurdles.</p>
+      <span class="text-primary fw-bold text-uppercase small">Job Categories</span>
+      <h3 class="fw-bold text-dark">Flexible Micro-Jobs Across Chennai</h3>
+      <p class="text-muted">Choose when and where you want to work within 3 km of your locality.</p>
     </div>
 
     <div class="row g-3">
-      <!-- Portal 1 -->
-      <div class="col-md-6 col-lg-3">
-        <div class="lv-card h-100 p-4 border-top border-4 border-primary text-center">
-          <div class="fs-1 text-primary mb-2"><i class="bi bi-search"></i></div>
-          <h5 class="fw-bold mb-2">1. Browse Jobs</h5>
-          <p class="text-muted small mb-3">Live Chennai jobs feed with radius filters, category tags, and pay rates.</p>
-          <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary w-100">
-            Open Jobs Feed ↗
-          </a>
-        </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{{ url_for('seeker.jobs', category='shop_helper') }}" class="card text-center p-3 h-100 text-decoration-none category-card">
+          <div class="fs-2 text-primary mb-2"><i class="bi bi-shop"></i></div>
+          <h6 class="fw-bold text-dark mb-1">Shop Helper</h6>
+          <span class="text-muted small">₹100–150/hr</span>
+        </a>
       </div>
-
-      <!-- Portal 2 -->
-      <div class="col-md-6 col-lg-3">
-        <div class="lv-card h-100 p-4 border-top border-4 border-success text-center">
-          <div class="fs-1 text-success mb-2"><i class="bi bi-pencil-square"></i></div>
-          <h5 class="fw-bold mb-2">2. Post a Job</h5>
-          <p class="text-muted small mb-3">30-second employer posting interface with wage calculator & instant scam check.</p>
-          <a href="{{ url_for('employer.post_job') }}" class="btn btn-sm btn-lv-success w-100">
-            Open Post Job ↗
-          </a>
-        </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{{ url_for('seeker.jobs', category='packing') }}" class="card text-center p-3 h-100 text-decoration-none category-card">
+          <div class="fs-2 text-success mb-2"><i class="bi bi-box-seam"></i></div>
+          <h6 class="fw-bold text-dark mb-1">Packing</h6>
+          <span class="text-muted small">₹500–700/day</span>
+        </a>
       </div>
-
-      <!-- Portal 3 -->
-      <div class="col-md-6 col-lg-3">
-        <div class="lv-card h-100 p-4 border-top border-4 border-danger text-center">
-          <div class="fs-1 text-danger mb-2"><i class="bi bi-shield-check"></i></div>
-          <h5 class="fw-bold mb-2">3. Admin Portal</h5>
-          <p class="text-muted small mb-3">Report queue moderation, employer GST/shop verification, and audit logs.</p>
-          <a href="{{ url_for('auth.demo_login', role='admin') }}" class="btn btn-sm btn-lv-danger w-100">
-            Open Admin Panel ↗
-          </a>
-        </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{{ url_for('seeker.jobs', category='delivery') }}" class="card text-center p-3 h-100 text-decoration-none category-card">
+          <div class="fs-2 text-warning mb-2"><i class="bi bi-bicycle"></i></div>
+          <h6 class="fw-bold text-dark mb-1">Local Delivery</h6>
+          <span class="text-muted small">₹120–180/hr</span>
+        </a>
       </div>
-
-      <!-- Portal 4 -->
-      <div class="col-md-6 col-lg-3">
-        <div class="lv-card h-100 p-4 border-top border-4 border-info text-center">
-          <div class="fs-1 text-info mb-2"><i class="bi bi-headset"></i></div>
-          <h5 class="fw-bold mb-2">4. Support Center</h5>
-          <p class="text-muted small mb-3">Ticket submission, fraud prevention guide, and safety dispute resolution.</p>
-          <a href="{{ url_for('support.support') }}" class="btn btn-sm btn-lv-teal w-100">
-            Open Support ↗
-          </a>
-        </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{{ url_for('seeker.jobs', category='event_staff') }}" class="card text-center p-3 h-100 text-decoration-none category-card">
+          <div class="fs-2 text-info mb-2"><i class="bi bi-calendar-event"></i></div>
+          <h6 class="fw-bold text-dark mb-1">Event Staff</h6>
+          <span class="text-muted small">₹600–1000/day</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{{ url_for('seeker.jobs', category='tutoring') }}" class="card text-center p-3 h-100 text-decoration-none category-card">
+          <div class="fs-2 text-danger mb-2"><i class="bi bi-book"></i></div>
+          <h6 class="fw-bold text-dark mb-1">Tutoring</h6>
+          <span class="text-muted small">₹200–350/hr</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{{ url_for('seeker.jobs', category='data_entry') }}" class="card text-center p-3 h-100 text-decoration-none category-card">
+          <div class="fs-2 text-secondary mb-2"><i class="bi bi-laptop"></i></div>
+          <h6 class="fw-bold text-dark mb-1">Data Entry</h6>
+          <span class="text-muted small">₹150–200/hr</span>
+        </a>
       </div>
     </div>
   </div>
@@ -158,45 +166,45 @@
   <div class="row g-3 my-4" id="safety">
     <div class="col-md-4">
       <div class="lv-card h-100 p-4">
-        <div class="text-primary fs-2 mb-2"><i class="bi bi-stopwatch"></i></div>
-        <h5 class="fw-bold">Fast posting</h5>
-        <p class="text-muted mb-0">Post a micro-job in 30 seconds or less in 3 simple steps without lengthy forms.</p>
+        <div class="text-primary fs-2 mb-2"><i class="bi bi-stopwatch-fill"></i></div>
+        <h5 class="fw-bold">Fast 30-Second Posting</h5>
+        <p class="text-muted mb-0">No lengthy paperwork. Neighborhood employers post in 3 quick steps and connect immediately.</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="lv-card h-100 p-4">
-        <div class="text-primary fs-2 mb-2"><i class="bi bi-geo-alt"></i></div>
-        <h5 class="fw-bold">Truly local</h5>
-        <p class="text-muted mb-0">Seekers see verified openings within 2–3 km of their locality. Zero commute hassles.</p>
+        <div class="text-primary fs-2 mb-2"><i class="bi bi-geo-alt-fill"></i></div>
+        <h5 class="fw-bold">Truly Hyper-Local</h5>
+        <p class="text-muted mb-0">Browse verified listings within 1 to 3 km of your street. Zero commute time, walk or cycle to work.</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="lv-card h-100 p-4">
-        <div class="text-primary fs-2 mb-2"><i class="bi bi-shield-check"></i></div>
-        <h5 class="fw-bold">Safe by default</h5>
-        <p class="text-muted mb-0">No job can ask for a registration fee or deposit. Real-time scam filters block bad actors live.</p>
+        <div class="text-primary fs-2 mb-2"><i class="bi bi-shield-fill-check"></i></div>
+        <h5 class="fw-bold">100% Scam-Free Policy</h5>
+        <p class="text-muted mb-0">Zero tolerance for registration fees, training charges, or deposits. Bad listings are banned automatically.</p>
       </div>
     </div>
   </div>
 
-  <!-- How it Works (3 Steps) -->
+  <!-- How It Works (3 Steps) -->
   <div class="lv-card p-4 my-4" id="how-it-works">
     <h4 class="fw-bold mb-4 text-center">How PARTBASE Works</h4>
     <div class="row text-center g-4">
       <div class="col-md-4">
-        <div class="badge bg-primary rounded-circle p-3 fs-5 mb-2">1</div>
-        <h5 class="fw-bold">Sign in</h5>
-        <p class="text-muted">Mobile number and 6-digit OTP. No passwords, no email required.</p>
+        <div class="step-icon-badge bg-primary text-white mb-3">1</div>
+        <h5 class="fw-bold">Sign In with Mobile OTP</h5>
+        <p class="text-muted small">Password-free 6-digit authentication. No email or complex registration required.</p>
       </div>
       <div class="col-md-4">
-        <div class="badge bg-primary rounded-circle p-3 fs-5 mb-2">2</div>
-        <h5 class="fw-bold">Find or post</h5>
-        <p class="text-muted">Filter micro-jobs by Today, This weekend, or Evening only within 3 km.</p>
+        <div class="step-icon-badge bg-primary text-white mb-3">2</div>
+        <h5 class="fw-bold">Select Locality & Hours</h5>
+        <p class="text-muted small">Filter by Today, Tomorrow, or Weekend only within OMR, Anna Nagar, and nearby Chennai areas.</p>
       </div>
       <div class="col-md-4">
-        <div class="badge bg-primary rounded-circle p-3 fs-5 mb-2">3</div>
-        <h5 class="fw-bold">Hire and rate</h5>
-        <p class="text-muted">Call, apply, hire, then double-blind ratings reveal when both have completed.</p>
+        <div class="step-icon-badge bg-primary text-white mb-3">3</div>
+        <h5 class="fw-bold">Work & Direct Payout</h5>
+        <p class="text-muted small">Complete the task, receive same-day settlement directly, and build trusted mutual reviews.</p>
       </div>
     </div>
   </div>

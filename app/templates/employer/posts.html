@@ -12,15 +12,84 @@
     </div>
   {% endif %}
 
-  <!-- Header -->
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <div>
-      <h3 class="fw-bold mb-0 text-dark">Hello, {{ shop.owner_name }}</h3>
-      <span class="text-muted small">Your posts</span>
+  <!-- Shop Profile Header Banner -->
+  <div class="lv-card p-3 p-md-4 mb-3 border-0 bg-white shadow-sm">
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center" style="width: 56px; height: 56px;">
+          <i class="bi bi-shop fs-2"></i>
+        </div>
+        <div>
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <h4 class="fw-bold mb-0 text-dark">{{ shop.shop_name }}</h4>
+            {% if shop.is_verified %}
+              <span class="chip-verified"><i class="bi bi-patch-check-fill"></i> Verified Shop</span>
+            {% else %}
+              <span class="badge bg-warning text-dark"><i class="bi bi-clock-history"></i> Verification Pending</span>
+            {% endif %}
+          </div>
+          <span class="text-muted small">
+            <i class="bi bi-person me-1"></i> {{ shop.owner_name }} ·
+            <i class="bi bi-geo-alt me-1"></i> {{ shop.address }}
+            {% if shop.rating_avg > 0 %}
+              · <span class="text-warning">★ {{ shop.rating_avg }}</span> ({{ shop.rating_count }} ratings)
+            {% endif %}
+          </span>
+        </div>
+      </div>
+      <div class="mt-2 mt-md-0 d-flex gap-2">
+        <a href="{{ url_for('employer.setup') }}" class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-gear me-1"></i> Edit Shop Details
+        </a>
+        <a href="{{ url_for('employer.post_job') }}" class="btn btn-sm btn-lv-primary shadow-sm">
+          <i class="bi bi-plus-lg me-1"></i> Post a Job
+        </a>
+      </div>
     </div>
-    <a href="{{ url_for('employer.post_job') }}" class="btn btn-lv-primary">
-      <i class="bi bi-plus-lg me-1"></i> Post a job
-    </a>
+  </div>
+
+  <!-- Employer KPI Metric Cards -->
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3">
+      <div class="lv-card p-3 h-100 text-center mb-0">
+        <div class="text-muted small fw-semibold text-uppercase">Total Job Posts</div>
+        <div class="fs-3 fw-bold text-primary">{{ jobs|length }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="lv-card p-3 h-100 text-center mb-0">
+        <div class="text-muted small fw-semibold text-uppercase">Active Hiring</div>
+        <div class="fs-3 fw-bold text-success">
+          {{ jobs|selectattr('status', 'equalto', 'open')|list|length }}
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="lv-card p-3 h-100 text-center mb-0">
+        <div class="text-muted small fw-semibold text-uppercase">Total Applicants</div>
+        <div class="fs-3 fw-bold text-warning">
+          {% set total_apps = namespace(count=0) %}
+          {% for j in jobs %}
+            {% set total_apps.count = total_apps.count + (j.applications|length) %}
+          {% endfor %}
+          {{ total_apps.count }}
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="lv-card p-3 h-100 text-center mb-0">
+        <div class="text-muted small fw-semibold text-uppercase">Urgent Boosted</div>
+        <div class="fs-3 fw-bold text-danger">
+          {{ jobs|selectattr('is_currently_boosted')|list|length }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Posts List -->
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h5 class="fw-bold mb-0 text-dark">Your Micro-Job Listings</h5>
+    <span class="text-muted small">{{ jobs|length }} listings managed</span>
   </div>
 
   {% if jobs %}
@@ -36,27 +105,30 @@
                     {{ job.status.replace('_', ' ') }}
                   </span>
                   {% if job.is_currently_boosted %}
-                    <span class="chip-urgent"><i class="bi bi-lightning-charge-fill"></i> Urgent</span>
+                    <span class="chip-urgent"><i class="bi bi-lightning-charge-fill"></i> Urgent Boost Active</span>
                   {% endif %}
                 </div>
                 <div class="text-muted small">
                   {% if job.day_option == 'today' %}Today{% elif job.day_option == 'tomorrow' %}Tomorrow{% else %}Weekend{% endif %}
-                  · <span class="fw-semibold text-dark">{{ job.applications|length }} applicants</span>
-                  · <span class="fw-semibold text-primary">{{ job.hired_count }} of {{ job.people_needed }} hired</span>
-                  · ₹{{ job.pay_amount }}/{{ job.pay_type }}
+                  {% if job.time_range %}· {{ job.time_range }}{% endif %}
+                  · <span class="fw-semibold text-dark">{{ job.applications|length }} applicants received</span>
+                  · <span class="fw-bold text-primary">{{ job.hired_count }} of {{ job.people_needed }} helpers hired</span>
+                  · <span class="fw-bold text-success">₹{{ job.pay_amount }}/{{ job.pay_type }}</span>
                 </div>
               </div>
 
               <div class="d-flex gap-2 align-items-center">
-                {% if job.status == 'open' or job.status == 'pending_review' %}
-                  <a href="{{ url_for('employer.job_detail', job_id=job.id) }}" class="btn btn-sm btn-lv-primary px-3">
-                    View applicants
-                  </a>
-                {% else %}
-                  <a href="{{ url_for('employer.post_job', copy_from=job.id) }}" class="btn btn-sm btn-lv-outline px-3">
-                    Post again
+                <a href="{{ url_for('employer.job_detail', job_id=job.id) }}" class="btn btn-sm btn-lv-primary px-3 shadow-sm">
+                  <i class="bi bi-people-fill me-1"></i> Review Applicants ({{ job.applications|length }})
+                </a>
+                {% if not job.is_currently_boosted and job.status == 'open' %}
+                  <a href="{{ url_for('employer.boost_job', job_id=job.id) }}" class="btn btn-sm btn-warning text-dark fw-bold">
+                    <i class="bi bi-lightning-charge-fill me-1"></i> Boost (₹49)
                   </a>
                 {% endif %}
+                <a href="{{ url_for('employer.post_job', copy_from=job.id) }}" class="btn btn-sm btn-outline-secondary" title="Clone as new job">
+                  <i class="bi bi-files me-1"></i> Copy
+                </a>
               </div>
             </div>
           </div>
@@ -71,9 +143,5 @@
       <a href="{{ url_for('employer.post_job') }}" class="btn btn-lv-primary">Post your first job</a>
     </div>
   {% endif %}
-
-  <div class="text-muted small mt-3">
-    <i class="bi bi-info-circle me-1"></i> Post again copies the last job, so a repeat post takes 5 seconds. An unfinished post is saved as a draft and offered when you return.
-  </div>
 </div>
 {% endblock %}

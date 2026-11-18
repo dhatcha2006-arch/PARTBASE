@@ -2,13 +2,73 @@
 
 {% block content %}
 <div class="container py-3">
-  <h3 class="fw-bold mb-3">My applications</h3>
+  <!-- Top Seeker Profile Banner -->
+  <div class="lv-card p-3 p-md-4 mb-3 border-0 bg-white shadow-sm">
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 56px; height: 56px;">
+          <i class="bi bi-person-fill fs-2"></i>
+        </div>
+        <div>
+          <h4 class="fw-bold mb-0 text-dark">{{ current_user.name or 'Seeker Profile' }}</h4>
+          <span class="text-muted small">
+            <i class="bi bi-geo-alt me-1"></i> {{ current_user.area.name if current_user.area else 'Chennai' }}
+            {% if current_user.seeker_profile and current_user.seeker_profile.free_slots %}
+              · Available: {{ current_user.seeker_profile.free_slots.replace('_', ' ') }}
+            {% endif %}
+          </span>
+        </div>
+      </div>
+      <div class="mt-2 mt-md-0 d-flex gap-2">
+        <a href="{{ url_for('seeker.setup') }}" class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-pencil me-1"></i> Edit Profile
+        </a>
+        <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary">
+          <i class="bi bi-search me-1"></i> Find More Jobs
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seeker KPI Metric Cards -->
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3">
+      <div class="lv-card p-3 h-100 text-center mb-0">
+        <div class="text-muted small fw-semibold text-uppercase">Total Applied</div>
+        <div class="fs-3 fw-bold text-primary">{{ applications|length }}</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="lv-card p-3 h-100 text-center mb-0">
+        <div class="text-muted small fw-semibold text-uppercase">Shortlisted</div>
+        <div class="fs-3 fw-bold text-warning">
+          {{ applications|selectattr('status', 'equalto', 'shortlisted')|list|length }}
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="lv-card p-3 h-100 text-center mb-0">
+        <div class="text-muted small fw-semibold text-uppercase">Hired & Active</div>
+        <div class="fs-3 fw-bold text-success">
+          {{ applications|selectattr('status', 'equalto', 'hired')|list|length }}
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="lv-card p-3 h-100 text-center mb-0">
+        <div class="text-muted small fw-semibold text-uppercase">Completed</div>
+        <div class="fs-3 fw-bold text-secondary">
+          {{ applications|selectattr('status', 'equalto', 'completed')|list|length }}
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Filter Tabs -->
   <div class="mb-3">
     <ul class="nav nav-pills gap-1">
       <li class="nav-item">
-        <a class="nav-link {% if active_tab == 'all' %}active{% endif %}" href="{{ url_for('seeker.applications', tab='all') }}">All</a>
+        <a class="nav-link {% if active_tab == 'all' %}active{% endif %}" href="{{ url_for('seeker.applications', tab='all') }}">All ({{ applications|length }})</a>
       </li>
       <li class="nav-item">
         <a class="nav-link {% if active_tab == 'applied' %}active{% endif %}" href="{{ url_for('seeker.applications', tab='applied') }}">Applied</a>
@@ -37,43 +97,53 @@
                   <span class="chip-status chip-status-{{ app.status }} text-capitalize">
                     {{ app.status }}
                   </span>
+                  {% if app.job.is_currently_boosted %}
+                    <span class="chip-urgent"><i class="bi bi-lightning-charge-fill"></i> Urgent</span>
+                  {% endif %}
                 </div>
                 <div class="text-muted small">
-                  {{ app.job.shop.shop_name }} ·
+                  <strong>{{ app.job.shop.shop_name }}</strong> ·
                   {% if app.job.day_option == 'today' %}Today{% elif app.job.day_option == 'tomorrow' %}Tomorrow{% else %}Weekend{% endif %}
                   {% if app.job.time_range %}· {{ app.job.time_range }}{% endif %} ·
-                  <span class="fw-semibold text-primary">₹{{ app.job.pay_amount }}/{{ app.job.pay_type }}</span>
+                  <span class="fw-bold text-primary">₹{{ app.job.pay_amount }}/{{ app.job.pay_type }}</span>
+                  · <span>{{ app.job.shop.area.name if app.job.shop.area else 'Chennai' }}</span>
                 </div>
               </div>
 
-              <!-- Actions according to application status -->
+              <!-- Contextual Action Buttons -->
               <div class="d-flex gap-2 align-items-center">
                 {% if app.status == 'applied' %}
+                  <a href="{{ url_for('seeker.job_detail', job_id=app.job_id) }}" class="btn btn-sm btn-outline-secondary">
+                    View Job
+                  </a>
                   <form method="POST" action="{{ url_for('seeker.withdraw_application', app_id=app.id) }}">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="btn btn-sm btn-link text-danger text-decoration-none">Withdraw</button>
+                    <button type="submit" class="btn btn-sm btn-link text-danger text-decoration-none" onclick="return confirm('Withdraw this application?')">Withdraw</button>
                   </form>
                 {% elif app.status == 'shortlisted' %}
                   {% if app.job.shop.owner and app.job.shop.owner.phone %}
-                    <a href="tel:{{ app.job.shop.owner.phone }}" class="btn btn-sm btn-lv-outline">
-                      <i class="bi bi-telephone-fill text-success me-1"></i> Call
+                    <a href="tel:{{ app.job.shop.owner.phone }}" class="btn btn-sm btn-success text-white">
+                      <i class="bi bi-telephone-fill me-1"></i> Call Shop
                     </a>
                   {% endif %}
+                  <a href="{{ url_for('seeker.job_detail', job_id=app.job_id) }}" class="btn btn-sm btn-lv-primary">
+                    Details
+                  </a>
                 {% elif app.status == 'hired' %}
                   {% if app.job.shop.owner and app.job.shop.owner.phone %}
-                    <a href="tel:{{ app.job.shop.owner.phone }}" class="btn btn-sm btn-lv-outline">
-                      <i class="bi bi-telephone-fill text-success me-1"></i> Call
+                    <a href="tel:{{ app.job.shop.owner.phone }}" class="btn btn-sm btn-success text-white">
+                      <i class="bi bi-telephone-fill me-1"></i> Call Shop
                     </a>
                   {% endif %}
                   <a href="{{ app.directions_url }}" target="_blank" class="btn btn-sm btn-lv-primary">
-                    Directions ↗
+                    <i class="bi bi-compass me-1"></i> Directions ↗
                   </a>
                 {% elif app.status == 'completed' %}
                   {% if app.is_rated %}
                     <span class="badge bg-light text-muted border px-3 py-2">✓ Rated</span>
                   {% else %}
-                    <a href="{{ url_for('seeker.rate', app_id=app.id) }}" class="btn btn-sm btn-lv-primary">
-                      Rate shop
+                    <a href="{{ url_for('seeker.rate', app_id=app.id) }}" class="btn btn-sm btn-warning text-dark fw-bold">
+                      <i class="bi bi-star-fill me-1"></i> Rate Shop
                     </a>
                   {% endif %}
                 {% endif %}
@@ -86,14 +156,10 @@
   {% else %}
     <div class="lv-card p-5 text-center">
       <i class="bi bi-journal-x text-muted fs-1 mb-2"></i>
-      <h5 class="fw-bold">No applications here</h5>
+      <h5 class="fw-bold">No applications under this filter</h5>
       <p class="text-muted small">Open jobs near you and tap Apply to get started.</p>
-      <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary">Browse jobs</a>
+      <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary">Browse Jobs Near You</a>
     </div>
   {% endif %}
-
-  <div class="text-muted small mt-3">
-    <i class="bi bi-info-circle me-1"></i> When a shop marks a job complete, its row turns to <strong>Completed</strong> with a <strong>Rate shop</strong> button.
-  </div>
 </div>
 {% endblock %}

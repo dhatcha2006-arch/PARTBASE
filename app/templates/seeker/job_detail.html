@@ -83,13 +83,12 @@
           <p class="text-muted small mb-3">Your name, area and free time are shared with the shop.</p>
 
           {% if not user %}
-            <div class="p-3 bg-light rounded-3 border mb-3">
-              <p class="small text-muted mb-2">Apply in 1-click or sign in to send your application:</p>
-              <a href="{{ url_for('auth.demo_login', role='seeker') }}" class="btn btn-lv-success w-100 py-2 fs-6 fw-bold mb-2 shadow-sm">
-                <i class="bi bi-lightning-charge-fill me-1"></i> 1-Click Demo Apply
-              </a>
-              <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary w-100 py-2 fs-6 fw-semibold">
-                <i class="bi bi-phone me-1"></i> Sign In with OTP
+            <div class="p-4 bg-light rounded-3 border text-center mb-3">
+              <div class="fs-1 text-primary mb-2"><i class="bi bi-person-lock"></i></div>
+              <h5 class="fw-bold text-dark mb-1">Sign in to apply</h5>
+              <p class="text-muted small mb-3">Connect directly with this shop and start work today.</p>
+              <a href="{{ url_for('auth.login') }}" class="btn btn-lv-primary w-100 py-2 fs-6 fw-bold shadow">
+                <i class="bi bi-box-arrow-in-right me-1"></i> Sign In with Mobile Number
               </a>
             </div>
           {% elif existing_app %}

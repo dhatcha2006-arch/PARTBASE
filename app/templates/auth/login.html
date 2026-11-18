@@ -5,39 +5,27 @@
   <div class="row min-vh-75 align-items-center justify-content-center">
     <!-- Left Hero Column -->
     <div class="col-lg-5 mb-4 mb-lg-0 text-center text-lg-start">
-      <h1 class="hero-title mb-3">Jobs near you.<br><span class="text-primary">Today.</span></h1>
+      <h1 class="hero-title mb-3">Jobs near you.<br><span class="text-primary text-gradient">Today.</span></h1>
       <p class="hero-subtitle mb-4">Hyper-local micro-jobs for Chennai</p>
       {% include 'components/_safety_banner.html' %}
     </div>
 
     <!-- Right Login Card -->
-    <div class="col-lg-6 col-md-9">
+    <div class="col-lg-5 col-md-8">
       <div class="lv-card p-4 p-md-5">
-        <!-- 1-Click Instant Demo Login Section -->
-        <div class="p-3 mb-4 rounded-3 bg-light border">
-          <div class="d-flex align-items-center justify-content-between mb-2">
-            <span class="small fw-bold text-dark text-uppercase">
-              <i class="bi bi-lightning-charge-fill text-warning me-1"></i> 1-Click Instant Demo Access
-            </span>
-            <span class="badge bg-success-subtle text-success border border-success-subtle">No OTP Needed</span>
-          </div>
-          <div class="d-grid gap-2">
-            <a href="{{ url_for('auth.demo_login', role='seeker') }}" class="btn btn-sm btn-outline-primary text-start fw-semibold py-2">
-              <i class="bi bi-person-fill me-2"></i> <strong>Seeker:</strong> Priya K (+91 98765 11111)
-            </a>
-            <a href="{{ url_for('auth.demo_login', role='employer') }}" class="btn btn-sm btn-outline-success text-start fw-semibold py-2">
-              <i class="bi bi-shop me-2"></i> <strong>Employer:</strong> Murugan Tailors (+91 98765 43210)
-            </a>
-            <a href="{{ url_for('auth.demo_login', role='admin') }}" class="btn btn-sm btn-outline-dark text-start fw-semibold py-2">
-              <i class="bi bi-shield-lock-fill me-2"></i> <strong>Admin:</strong> PARTBASE Admin (+91 98765 00000)
-            </a>
-          </div>
+        <!-- Role Switcher Pill -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <span class="badge bg-light text-primary border px-3 py-2 rounded-pill fw-semibold">
+            <i class="bi bi-circle-fill me-1" style="font-size: 0.5rem;"></i>
+            {{ 'Seeking Micro-Jobs' if role == 'seeker' else 'Hiring Helpers' }}
+          </span>
+          <a href="{{ url_for('auth.select_role', role='employer' if role == 'seeker' else 'seeker') }}" class="text-decoration-none small fw-semibold">
+            Switch to {{ 'Employer' if role == 'seeker' else 'Seeker' }}
+          </a>
         </div>
 
-        <div class="text-center my-3 position-relative">
-          <hr class="text-muted">
-          <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small fw-semibold">OR ENTER MOBILE NUMBER</span>
-        </div>
+        <h3 class="fw-bold mb-1">Enter your mobile number</h3>
+        <p class="text-muted small mb-4">We will send a 6-digit OTP. No password or email needed.</p>
 
         <form method="POST" action="{{ url_for('auth.login') }}" class="prevent-double-submit">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -46,10 +34,10 @@
             <label class="form-label fw-semibold">Mobile number</label>
             <div class="input-group">
               <span class="input-group-text bg-light fw-bold text-muted">+91</span>
-              <input type="tel" name="phone" value="{{ phone or '' }}" class="form-control form-control-lg fs-6" placeholder="98765 43210" required autofocus>
+              <input type="tel" name="phone" value="{{ phone or '' }}" class="form-control form-control-lg fs-6" placeholder="98765 43210" required autofocus pattern="[0-9]{10}" maxlength="10">
             </div>
             <div class="form-text small text-muted">
-              <i class="bi bi-info-circle me-1"></i> Testing OTP: <strong>123456</strong> works for all numbers.
+              Enter your 10-digit Indian mobile number.
             </div>
           </div>
 
