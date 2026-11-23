@@ -3,119 +3,61 @@
     <!-- Brand Logo -->
     <a href="{{ url_for('auth.landing') }}" class="jp-logo" aria-label="PARTBASE Home">
       <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="PARTBASE Icon" width="34" height="34" class="rounded-3 shadow-sm">
-      <span>PARTBASE</span>
+      <span>PartBase</span>
     </a>
 
-    <!-- Rich Interactive Multi-Menu (Juspay Mega Dropdowns) -->
-    <ul class="jp-nav-items">
+    <!-- Center Navigation Links -->
+    <ul class="jp-nav-items d-none d-lg-flex">
       {% if current_user %}
         {% if session.get('is_admin') %}
-          <li class="jp-nav-item"><a href="{{ url_for('admin.dashboard') }}"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a></li>
-          <li class="jp-nav-item"><a href="{{ url_for('admin.reports') }}"><i class="bi bi-shield-exclamation text-danger me-1"></i> Reports</a></li>
-          <li class="jp-nav-item"><a href="{{ url_for('admin.employers') }}"><i class="bi bi-shop text-warning me-1"></i> Verifications</a></li>
-          <li class="jp-nav-item"><a href="{{ url_for('admin.support') }}"><i class="bi bi-headset text-info me-1"></i> Support</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('admin.dashboard') }}"><i class="bi bi-speedometer2 me-1 text-lime"></i> Dashboard</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('admin.reports') }}"><i class="bi bi-shield-exclamation me-1"></i> Reports</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('admin.employers') }}"><i class="bi bi-shop me-1"></i> Verifications</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('admin.support') }}"><i class="bi bi-headset me-1"></i> Support</a></li>
         {% elif active_role == 'seeker' %}
-          <li class="jp-nav-item"><a href="{{ url_for('seeker.dashboard') }}"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a></li>
-          <li class="jp-nav-item"><a href="{{ url_for('seeker.jobs') }}">Find Jobs</a></li>
-          <li class="jp-nav-item"><a href="{{ url_for('seeker.experience') }}">Experience</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('seeker.dashboard') }}"><i class="bi bi-speedometer2 me-1 text-lime"></i> Dashboard</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('seeker.jobs') }}">Find jobs</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('seeker.experience') }}">Experience Form</a></li>
           <li class="jp-nav-item"><a href="{{ url_for('seeker.applications') }}">Applications</a></li>
           <li class="jp-nav-item"><a href="{{ url_for('support.support') }}">Support</a></li>
         {% else %}
-          <li class="jp-nav-item"><a href="{{ url_for('employer.dashboard') }}"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('employer.dashboard') }}"><i class="bi bi-speedometer2 me-1 text-lime"></i> Dashboard</a></li>
           <li class="jp-nav-item"><a href="{{ url_for('employer.posts') }}">My Shifts</a></li>
-          <li class="jp-nav-item"><a href="{{ url_for('employer.post_job') }}"><i class="bi bi-plus-circle me-1"></i> Post Shift</a></li>
+          <li class="jp-nav-item"><a href="{{ url_for('employer.post_job') }}"><i class="bi bi-plus-circle me-1 text-lime"></i> Post a job</a></li>
           <li class="jp-nav-item"><a href="{{ url_for('support.support') }}">Support</a></li>
         {% endif %}
       {% else %}
-        <!-- Mega Menu 1: Platform & Jobs -->
+        <!-- Default Public Links -->
         <li class="jp-nav-item">
-          <button type="button">
-            <span>Work Opportunities</span>
-            <i class="bi bi-chevron-down small opacity-75"></i>
-          </button>
-          <div class="jp-dropdown-menu">
-            <div class="jp-drop-header">POPULAR CATEGORIES</div>
-            <a href="{{ url_for('seeker.jobs', category='shop_helper') }}" class="jp-drop-item">
-              <div class="jp-drop-icon"><i class="bi bi-shop"></i></div>
-              <div>
-                <div class="jp-drop-title">Retail &amp; Shop Helpers</div>
-                <div class="jp-drop-desc">Counter sales, billing support, customer assist · ₹100–150/hr</div>
-              </div>
-            </a>
-            <a href="{{ url_for('seeker.jobs', category='packing') }}" class="jp-drop-item">
-              <div class="jp-drop-icon"><i class="bi bi-box-seam"></i></div>
-              <div>
-                <div class="jp-drop-title">Packing &amp; Inventory</div>
-                <div class="jp-drop-desc">Order packing, labeling, supermarket stock · ₹500–700/day</div>
-              </div>
-            </a>
-            <a href="{{ url_for('seeker.jobs', category='delivery') }}" class="jp-drop-item">
-              <div class="jp-drop-icon"><i class="bi bi-bicycle"></i></div>
-              <div>
-                <div class="jp-drop-title">Neighborhood Delivery</div>
-                <div class="jp-drop-desc">Short distance local deliveries within 3 km · ₹120–180/hr</div>
-              </div>
-            </a>
-            <div class="mt-2 pt-2 border-top border-secondary border-opacity-25 text-end">
-              <a href="{{ url_for('seeker.jobs') }}" class="small fw-bold text-primary">Browse all 6 categories →</a>
-            </div>
-          </div>
+          <a href="{{ url_for('seeker.jobs') }}">Find jobs</a>
         </li>
-
-        <!-- Mega Menu 2: For Businesses -->
         <li class="jp-nav-item">
-          <button type="button">
-            <span>For Employers</span>
-            <i class="bi bi-chevron-down small opacity-75"></i>
-          </button>
-          <div class="jp-dropdown-menu">
-            <div class="jp-drop-header">EMPLOYER SUITE</div>
-            <a href="{{ url_for('employer.post_job') }}" class="jp-drop-item">
-              <div class="jp-drop-icon"><i class="bi bi-plus-circle"></i></div>
-              <div>
-                <div class="jp-drop-title">Post a Micro-Job</div>
-                <div class="jp-drop-desc">Publish today, tomorrow or weekend needs in 30 seconds</div>
-              </div>
-            </a>
-            <a href="{{ url_for('auth.demo_login', role='employer') }}" class="jp-drop-item">
-              <div class="jp-drop-icon"><i class="bi bi-speedometer2"></i></div>
-              <div>
-                <div class="jp-drop-title">Employer Dashboard Demo</div>
-                <div class="jp-drop-desc">Manage applications, verify seekers, boost job listings</div>
-              </div>
-            </a>
-            <a href="/#safety" class="jp-drop-item">
-              <div class="jp-drop-icon"><i class="bi bi-patch-check"></i></div>
-              <div>
-                <div class="jp-drop-title">Shop Verification Badge</div>
-                <div class="jp-drop-desc">Increase application rates with verified merchant badge</div>
-              </div>
-            </a>
-          </div>
+          <a href="/#how-it-works">How it works</a>
         </li>
-
-        <!-- Direct Nav Links -->
-        <li class="jp-nav-item"><a href="{{ url_for('seeker.jobs') }}">Live Feed</a></li>
-        <li class="jp-nav-item"><a href="/#metrics">Metrics</a></li>
-        <li class="jp-nav-item"><a href="{{ url_for('support.support') }}">Support</a></li>
+        <li class="jp-nav-item">
+          <a href="/#for-shops">For shops</a>
+        </li>
+        <li class="jp-nav-item">
+          <a href="/#pricing">Pricing</a>
+        </li>
       {% endif %}
     </ul>
 
-    <!-- Action / Profile / Contact Link -->
-    <div class="d-flex align-items-center gap-3">
+    <!-- Right Side Actions -->
+    <div class="d-flex align-items-center gap-2">
       {% if current_user %}
-        <span class="jp-tag">
-          <i class="bi bi-person-fill text-primary"></i> {{ current_user.name or 'Account' }}
+        <span class="jp-tag d-none d-sm-inline-flex">
+          <i class="bi bi-person-fill text-lime"></i> {{ current_user.name or 'Account' }}
         </span>
         <a href="{{ url_for('auth.logout') }}" class="jp-cta-link text-white-50">
           Sign out
         </a>
       {% else %}
-        <a href="{{ url_for('employer.post_job') }}" class="jp-tag d-none d-md-inline-flex">
-          Hire Helpers
-        </a>
         <a href="{{ url_for('auth.login') }}" class="jp-cta-link">
-          Sign in <i class="bi bi-arrow-right"></i>
+          Sign in
+        </a>
+        <a href="{{ url_for('employer.post_job') }}" class="btn btn-sm btn-lv-primary shadow-sm">
+          Post a job <i class="bi bi-arrow-up-right ms-1"></i>
         </a>
       {% endif %}
     </div>

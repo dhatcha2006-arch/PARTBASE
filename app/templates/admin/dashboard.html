@@ -11,12 +11,12 @@
   <style>
     .admin-layout {
       min-height: 100vh;
-      background: radial-gradient(circle at 20% 0%, rgba(5, 97, 226, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.06) 0%, transparent 45%),
-                  #0A0B0D;
+      background: radial-gradient(circle at 20% 0%, rgba(198, 244, 50, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(198, 244, 50, 0.05) 0%, transparent 45%),
+                  #0B0B0C;
     }
     .admin-sidebar-glass {
-      background: rgba(14, 16, 20, 0.95);
+      background: rgba(15, 15, 16, 0.95);
       border-right: 1px solid rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(20px);
     }
@@ -25,8 +25,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 0.75rem 1rem;
-      border-radius: 12px;
-      color: var(--jp-gray-text);
+      border-radius: 9999px;
+      color: var(--pb-muted);
       text-decoration: none;
       font-weight: 600;
       font-size: 0.92rem;
@@ -39,13 +39,14 @@
       transform: translateX(2px);
     }
     .admin-nav-item.active {
-      color: #FFFFFF;
-      background: linear-gradient(90deg, rgba(5, 97, 226, 0.28) 0%, rgba(5, 97, 226, 0.08) 100%);
-      border: 1px solid rgba(5, 97, 226, 0.5);
-      box-shadow: 0 4px 20px rgba(5, 97, 226, 0.25);
+      color: #0B0B0C;
+      background: #C6F432;
+      border: 1px solid #C6F432;
+      box-shadow: 0 4px 20px rgba(198, 244, 50, 0.35);
+      font-weight: 700;
     }
     .admin-kpi-card {
-      background: linear-gradient(135deg, rgba(23, 26, 31, 0.95) 0%, rgba(15, 17, 21, 0.98) 100%);
+      background: linear-gradient(135deg, rgba(22, 22, 24, 0.95) 0%, rgba(15, 15, 16, 0.98) 100%);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
       padding: 1.5rem 1.6rem;
@@ -57,7 +58,7 @@
     .admin-kpi-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-      border-color: rgba(255, 255, 255, 0.16);
+      border-color: rgba(198, 244, 50, 0.3);
     }
     .admin-kpi-icon {
       width: 44px;
@@ -167,13 +168,13 @@
         <div class="row g-3 mb-4">
           <!-- Card 1: Flagged Reports -->
           <div class="col-6 col-lg-3">
-            <div class="admin-kpi-card" style="border-top: 3px solid #FF334B;">
+            <div class="admin-kpi-card" style="border-top: 3px solid #FFFFFF;">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>
                   <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Flagged Incidents</div>
                   <div class="stat-number text-danger mt-1" style="font-size: 2.2rem;">{{ reported_jobs_count }}</div>
                 </div>
-                <div class="admin-kpi-icon" style="background: rgba(255, 51, 75, 0.15); color: #FF334B; border: 1px solid rgba(255, 51, 75, 0.3);">
+                <div class="admin-kpi-icon" style="background: rgba(255, 255, 255, 0.15); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.3);">
                   <i class="bi bi-flag-fill"></i>
                 </div>
               </div>
@@ -183,13 +184,13 @@
 
           <!-- Card 2: Pending Store Verifications -->
           <div class="col-6 col-lg-3">
-            <div class="admin-kpi-card" style="border-top: 3px solid #FF9900;">
+            <div class="admin-kpi-card" style="border-top: 3px solid #D6FF50;">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>
                   <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Pending Merchant KYC</div>
                   <div class="stat-number text-warning mt-1" style="font-size: 2.2rem;">{{ pending_shops_count }}</div>
                 </div>
-                <div class="admin-kpi-icon" style="background: rgba(255, 153, 0, 0.15); color: #FF9900; border: 1px solid rgba(255, 153, 0, 0.3);">
+                <div class="admin-kpi-icon" style="background: rgba(214, 255, 80, 0.15); color: #D6FF50; border: 1px solid rgba(214, 255, 80, 0.3);">
                   <i class="bi bi-shop-window"></i>
                 </div>
               </div>
@@ -199,13 +200,13 @@
 
           <!-- Card 3: Support Grievances -->
           <div class="col-6 col-lg-3">
-            <div class="admin-kpi-card" style="border-top: 3px solid #00E5FF;">
+            <div class="admin-kpi-card" style="border-top: 3px solid #C6F432;">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>
                   <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Open Support Tickets</div>
                   <div class="stat-number text-info mt-1" style="font-size: 2.2rem;">{{ open_tickets_count }}</div>
                 </div>
-                <div class="admin-kpi-icon" style="background: rgba(0, 229, 255, 0.15); color: #00E5FF; border: 1px solid rgba(0, 229, 255, 0.3);">
+                <div class="admin-kpi-icon" style="background: rgba(198, 244, 50, 0.15); color: #C6F432; border: 1px solid rgba(198, 244, 50, 0.3);">
                   <i class="bi bi-headset"></i>
                 </div>
               </div>
@@ -215,7 +216,7 @@
 
           <!-- Card 4: Platform Health -->
           <div class="col-6 col-lg-3">
-            <div class="admin-kpi-card" style="border-top: 3px solid #00E676;">
+            <div class="admin-kpi-card" style="border-top: 3px solid #C6F432;">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>
                   <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Zero-Fee Protection</div>
@@ -223,7 +224,7 @@
                     <span class="live-indicator"></span> 100%
                   </div>
                 </div>
-                <div class="admin-kpi-icon" style="background: rgba(0, 230, 118, 0.15); color: #00E676; border: 1px solid rgba(0, 230, 118, 0.3);">
+                <div class="admin-kpi-icon" style="background: rgba(198, 244, 50, 0.15); color: #C6F432; border: 1px solid rgba(198, 244, 50, 0.3);">
                   <i class="bi bi-shield-check"></i>
                 </div>
               </div>
@@ -259,7 +260,7 @@
                         </span>
                       </div>
 
-                      <div class="p-2 rounded mb-3 small" style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 51, 75, 0.2);">
+                      <div class="p-2 rounded mb-3 small" style="background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.2);">
                         <strong class="text-danger">Report Context:</strong>
                         <span class="text-white-50 ms-1">
                           {{ job.reports[0].details if job.reports else 'Flagged for zero-fee compliance review.' }}

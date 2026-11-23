@@ -4,8 +4,8 @@
   "description": "Hyper-local micro-jobs for Chennai neighborhood stores",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0B0F19",
-  "theme_color": "#00E5FF",
+  "background_color": "#0B0B0C",
+  "theme_color": "#C6F432",
   "icons": [
     {
       "src": "/static/img/favicon.svg",

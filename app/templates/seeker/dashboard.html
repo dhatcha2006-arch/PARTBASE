@@ -30,45 +30,45 @@
   <div class="row g-3 mb-4">
     <!-- Card 1: Completed Shifts & Earnings -->
     <div class="col-6 col-lg-3">
-      <div class="admin-kpi-card" style="border-top: 3px solid #00E676;">
-        <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Total Earnings</div>
-        <div class="stat-number text-success mt-1" style="font-size: 2rem;">
+      <div class="admin-kpi-card" style="border-top: 3px solid #C6F432;">
+        <div class="small fw-bold text-muted text-uppercase tracking-badge" style="font-size: 0.72rem;">Total Earnings</div>
+        <div class="stat-number text-lime mt-1" style="font-size: 2rem; font-family: var(--font-display);">
           ₹{{ total_earnings or (profile.jobs_completed * 480) }}
         </div>
-        <div class="small text-muted mt-1"><i class="bi bi-cash-stack text-success me-1"></i>Direct same-day cash</div>
+        <div class="small text-muted mt-1"><i class="bi bi-cash-stack text-lime me-1"></i>Direct same-day payout</div>
       </div>
     </div>
 
     <!-- Card 2: Completed Shifts -->
     <div class="col-6 col-lg-3">
-      <div class="admin-kpi-card" style="border-top: 3px solid #0561E2;">
-        <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Completed Shifts</div>
-        <div class="stat-number text-primary mt-1" style="font-size: 2rem;">
+      <div class="admin-kpi-card" style="border-top: 3px solid #C6F432;">
+        <div class="small fw-bold text-muted text-uppercase tracking-badge" style="font-size: 0.72rem;">Completed Shifts</div>
+        <div class="stat-number text-white mt-1" style="font-size: 2rem; font-family: var(--font-display);">
           {{ completed_shifts|length or profile.jobs_completed }}
         </div>
-        <div class="small text-muted mt-1"><i class="bi bi-check2-circle text-primary me-1"></i>100% verified shifts</div>
+        <div class="small text-muted mt-1"><i class="bi bi-check2-circle text-lime me-1"></i>100% verified shifts</div>
       </div>
     </div>
 
     <!-- Card 3: Active Applications -->
     <div class="col-6 col-lg-3">
-      <div class="admin-kpi-card" style="border-top: 3px solid #FF9900;">
-        <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Active Pipeline</div>
-        <div class="stat-number text-warning mt-1" style="font-size: 2rem;">
+      <div class="admin-kpi-card" style="border-top: 3px solid rgba(255, 255, 255, 0.2);">
+        <div class="small fw-bold text-muted text-uppercase tracking-badge" style="font-size: 0.72rem;">Active Pipeline</div>
+        <div class="stat-number text-white mt-1" style="font-size: 2rem; font-family: var(--font-display);">
           {{ active_apps|length }}
         </div>
-        <div class="small text-muted mt-1"><i class="bi bi-hourglass-split text-warning me-1"></i>Awaiting store response</div>
+        <div class="small text-muted mt-1"><i class="bi bi-hourglass-split text-lime me-1"></i>Awaiting response</div>
       </div>
     </div>
 
     <!-- Card 4: Work Hours Preference -->
     <div class="col-6 col-lg-3">
-      <div class="admin-kpi-card" style="border-top: 3px solid #00E5FF;">
-        <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Daily Availability</div>
-        <div class="stat-number text-info mt-1" style="font-size: 2rem;">
+      <div class="admin-kpi-card" style="border-top: 3px solid #C6F432;">
+        <div class="small fw-bold text-muted text-uppercase tracking-badge" style="font-size: 0.72rem;">Daily Availability</div>
+        <div class="stat-number text-lime mt-1" style="font-size: 2rem; font-family: var(--font-display);">
           {{ profile.hours_per_day or 4 }} <span class="fs-6 text-white-50">hrs/shift</span>
         </div>
-        <div class="small text-muted mt-1"><i class="bi bi-star-fill text-warning me-1"></i>{{ "%.1f" | format(profile.rating_avg) if profile.rating_avg else '4.8' }} Rating</div>
+        <div class="small text-muted mt-1"><i class="bi bi-star-fill text-lime me-1"></i>{{ "%.1f" | format(profile.rating_avg) if profile.rating_avg else '4.8' }} Rating</div>
       </div>
     </div>
   </div>
@@ -81,7 +81,7 @@
       <div class="lv-card p-4 mb-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <div class="d-flex align-items-center gap-2">
-            <span class="rounded p-2 text-primary" style="background: rgba(5, 97, 226, 0.15);">
+            <span class="rounded p-2 text-dark bg-lime">
               <i class="bi bi-person-workspace fs-5"></i>
             </span>
             <div>
@@ -106,7 +106,7 @@
             </div>
             <div class="col-sm-6">
               <span class="text-muted small d-block">Preferred Shift Length:</span>
-              <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25">
+              <span class="badge text-dark bg-lime">
                 <i class="bi bi-clock me-1"></i>{{ profile.hours_per_day or 4 }} Hours / Shift
               </span>
             </div>
@@ -210,7 +210,7 @@
               </div>
 
               <!-- Hourly Money & Total Pay JD Ribbon -->
-              <div class="p-2 rounded mb-3 d-flex justify-content-between align-items-center" style="background: rgba(0, 230, 118, 0.08); border: 1px solid rgba(0, 230, 118, 0.25);">
+              <div class="p-2 rounded mb-3 d-flex justify-content-between align-items-center" style="background: rgba(198, 244, 50, 0.08); border: 1px solid rgba(198, 244, 50, 0.25);">
                 <div>
                   <span class="small text-muted d-block" style="font-size: 0.72rem;">HOURLY RATE:</span>
                   <strong class="text-success">₹{{ r_job.effective_hourly_pay }}/hr</strong>

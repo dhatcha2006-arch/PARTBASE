@@ -1,24 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
-  <defs>
-    <linearGradient id="fav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1A1C23" />
-      <stop offset="100%" stop-color="#0E1015" />
-    </linearGradient>
-    <linearGradient id="fav-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00F0FF" />
-      <stop offset="50%" stop-color="#0561E2" />
-      <stop offset="100%" stop-color="#0047BA" />
-    </linearGradient>
-  </defs>
-
-  <rect width="48" height="48" rx="12" fill="url(#fav-bg)" stroke="#0561E2" stroke-width="2" />
-
-  <!-- P-B Monogram -->
-  <rect x="14" y="11" width="5" height="26" rx="2.5" fill="url(#fav-grad)" />
-  <path d="M16.5 11 H27 C31.5 11 34.5 14 34.5 18 C34.5 22 31.5 25 27 25 H16.5 Z" fill="url(#fav-grad)" />
-  <path d="M19 15.5 H26 C28.5 15.5 30 16.5 30 18 C30 19.5 28.5 20.5 26 20.5 H19 Z" fill="#111317" />
-  <path d="M16.5 24 H28.5 C33.5 24 36.5 27 36.5 31 C36.5 35 33.5 37 28.5 37 H16.5 Z" fill="url(#fav-grad)" />
-  <path d="M19 28 H27.5 C29.8 28 31.5 29 31.5 30.5 C31.5 32 29.8 33 27.5 33 H19 Z" fill="#111317" />
-  <circle cx="34.5" cy="18" r="2.2" fill="#00F0FF" />
-  <circle cx="28.5" cy="37" r="1.8" fill="#00F0FF" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#C6F432" />
+  <path d="M9 7H19C22.3137 7 25 9.68629 25 13C25 16.3137 22.3137 19 19 19H14V25H9V7Z" fill="#0B0B0C"/>
+  <circle cx="18" cy="13" r="2.5" fill="#C6F432"/>
 </svg>

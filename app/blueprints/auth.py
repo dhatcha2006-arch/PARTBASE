@@ -8,7 +8,7 @@ auth_bp = Blueprint("auth", __name__)
 
 @auth_bp.route("/")
 def landing():
-    sample_jobs = Job.query.filter_by(status="open").limit(2).all()
+    sample_jobs = Job.query.filter_by(status="open").order_by(Job.id.desc()).limit(6).all()
     return render_template("landing.html", sample_jobs=sample_jobs)
 
 @auth_bp.route("/demo-login/<role>")

@@ -1,38 +1,38 @@
-{# Ultra-Attractive Juspay-style Glassmorphic Job Card #}
+{# PartBase Dark Glassmorphic Job Card with Lime Accents #}
 <div class="jp-job-card {{ 'boosted' if job.is_currently_boosted else '' }}">
   <!-- Top Row: Title, Badges & Pay -->
   <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap flex-md-nowrap mb-3">
     <div style="flex: 1; min-width: 0;">
       <!-- Title & Status Badges -->
       <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-        <a href="{{ url_for('seeker.job_detail', job_id=job.id) }}" class="jp-job-title-link">
+        <a href="{{ url_for('seeker.job_detail', job_id=job.id) }}" class="text-decoration-none">
           <h4 class="jp-job-title mb-0">{{ job.title }}</h4>
         </a>
 
         {% if job.is_currently_boosted %}
-          <span class="jp-badge-urgent">
+          <span class="chip-urgent">
             <i class="bi bi-lightning-charge-fill me-1"></i> Urgent Need
           </span>
         {% endif %}
 
         {% if job.shop and job.shop.is_verified %}
-          <span class="jp-badge-verified">
+          <span class="chip-verified">
             <i class="bi bi-patch-check-fill me-1"></i> Verified Shop
           </span>
         {% endif %}
       </div>
 
       <!-- Shop Info & Location -->
-      <div class="jp-job-meta d-flex flex-wrap align-items-center gap-3">
-        <span class="jp-shop-name">
-          <i class="bi bi-shop me-1 text-primary"></i>
-          <strong>{{ job.shop.shop_name if job.shop else 'Neighborhood Shop' }}</strong>
+      <div class="d-flex flex-wrap align-items-center gap-2 small text-muted">
+        <span class="text-white-50">
+          <i class="bi bi-shop me-1 text-lime"></i>
+          <strong class="text-white">{{ job.shop.shop_name if job.shop else 'Neighborhood Shop' }}</strong>
         </span>
 
-        <span class="jp-dot">•</span>
+        <span>•</span>
 
-        <span class="jp-timing">
-          <i class="bi bi-clock-history me-1 text-info"></i>
+        <span>
+          <i class="bi bi-clock-history me-1 text-lime"></i>
           {% if job.time_range %}
             {{ job.time_range }}
           {% elif job.start_time and job.end_time %}
@@ -43,14 +43,15 @@
         </span>
 
         {% if job._computed_distance is defined %}
-          <span class="jp-dot">•</span>
-          <span class="jp-distance-chip">
-            <i class="bi bi-geo-alt-fill text-danger me-1"></i>{{ job._computed_distance }} km away
+          <span>•</span>
+          <span class="text-lime fw-semibold">
+            <i class="bi bi-geo-alt-fill me-1"></i>{{ job._computed_distance }} km away
           </span>
         {% endif %}
 
         {% if job.shop and job.shop.area %}
-          <span class="jp-area-text text-muted">
+          <span>•</span>
+          <span>
             <i class="bi bi-pin-map me-1"></i>{{ job.shop.area.name }}
           </span>
         {% endif %}
@@ -58,9 +59,9 @@
     </div>
 
     <!-- Payout Box: Hours-wise rate and total shift payout -->
-    <div class="jp-pay-box text-md-end flex-shrink-0">
-      <div class="jp-pay-rate">
-        <span class="jp-currency">₹</span>{{ job.pay_amount }}<span class="jp-pay-cycle">/{{ 'hr' if job.pay_type == 'hour' else 'day' }}</span>
+    <div class="text-md-end flex-shrink-0">
+      <div class="pay-amount">
+        <span>₹</span>{{ job.pay_amount }}<span class="fs-6 text-muted fw-normal">/{{ 'hr' if job.pay_type == 'hour' else 'day' }}</span>
       </div>
       <div class="jp-pay-sub">
         <span class="text-white fw-semibold">₹{{ job.effective_hourly_pay }}/hr</span> · {{ job.hours_per_shift or 4 }} hrs work
@@ -73,38 +74,38 @@
 
   <!-- Bottom Row: Tags & Apply Action -->
   <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-    <!-- Category, Helpers Needed & Rating -->
+    <!-- Category & Perks -->
     <div class="d-flex flex-wrap align-items-center gap-2">
-      <span class="jp-chip jp-chip-cat">
-        <i class="bi bi-briefcase-fill me-1"></i>{{ job.category | replace('_', ' ') | title }}
+      <span class="metric-pill py-1 px-2.5">
+        <i class="bi bi-briefcase-fill me-1 text-lime"></i>{{ job.category | replace('_', ' ') | title }}
       </span>
 
-      <span class="jp-chip" style="background: rgba(0, 229, 255, 0.1); color: #00E5FF; border: 1px solid rgba(0, 229, 255, 0.25);">
-        <i class="bi bi-clock-fill me-1"></i>{{ job.hours_per_shift or 4 }} Hours
+      <span class="metric-pill py-1 px-2.5">
+        <i class="bi bi-clock-fill me-1 text-lime"></i>{{ job.hours_per_shift or 4 }} Hours
       </span>
 
       {% if job.people_needed > 1 %}
-        <span class="jp-chip jp-chip-helpers">
-          <i class="bi bi-people-fill me-1"></i>{{ job.people_needed }} Helpers Wanted
+        <span class="metric-pill py-1 px-2.5">
+          <i class="bi bi-people-fill me-1 text-lime"></i>{{ job.people_needed }} Helpers Wanted
         </span>
       {% endif %}
 
       {% if job.shop and job.shop.rating_avg > 0 %}
-        <span class="jp-chip jp-chip-rating">
-          <i class="bi bi-star-fill text-warning me-1"></i>{{ "%.1f" | format(job.shop.rating_avg) }} Rating
+        <span class="metric-pill py-1 px-2.5">
+          <i class="bi bi-star-fill text-lime me-1"></i>{{ "%.1f" | format(job.shop.rating_avg) }} Rating
         </span>
       {% endif %}
 
-      <span class="jp-chip jp-chip-safe">
-        <i class="bi bi-shield-check text-success me-1"></i>Zero Fees Guaranteed
+      <span class="metric-pill py-1 px-2.5">
+        <i class="bi bi-shield-check text-lime me-1"></i>Zero Fees Guaranteed
       </span>
     </div>
 
-    <!-- Apply Button with Interactive Hover -->
+    <!-- 1-Tap Apply Action -->
     <div class="d-flex align-items-center gap-2">
-      <a href="{{ url_for('seeker.job_detail', job_id=job.id) }}" class="btn btn-sm btn-lv-primary jp-apply-btn">
-        <span>Apply in 30s</span>
-        <i class="bi bi-arrow-right ms-1 jp-btn-icon"></i>
+      <a href="{{ url_for('seeker.job_detail', job_id=job.id) }}" class="btn btn-sm btn-lv-primary">
+        <span>Apply in 1 tap</span>
+        <i class="bi bi-arrow-right ms-1"></i>
       </a>
     </div>
   </div>

@@ -36,45 +36,45 @@
   <div class="row g-3 mb-4">
     <!-- Card 1: Active Shifts -->
     <div class="col-6 col-lg-3">
-      <div class="admin-kpi-card" style="border-top: 3px solid #0561E2;">
-        <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Active Shifts</div>
-        <div class="stat-number text-primary mt-1" style="font-size: 2rem;">
+      <div class="admin-kpi-card" style="border-top: 3px solid #C6F432;">
+        <div class="small fw-bold text-muted text-uppercase tracking-badge" style="font-size: 0.72rem;">Active Shifts</div>
+        <div class="stat-number text-lime mt-1" style="font-size: 2rem; font-family: var(--font-display);">
           {{ active_jobs|length }}
         </div>
-        <div class="small text-muted mt-1"><i class="bi bi-broadcast text-primary me-1"></i>Live in Chennai feed</div>
+        <div class="small text-muted mt-1"><i class="bi bi-broadcast text-lime me-1"></i>Live in local feed</div>
       </div>
     </div>
 
     <!-- Card 2: Pending Applicants -->
     <div class="col-6 col-lg-3">
-      <div class="admin-kpi-card" style="border-top: 3px solid #FF9900;">
-        <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Pending Applicants</div>
-        <div class="stat-number text-warning mt-1" style="font-size: 2rem;">
+      <div class="admin-kpi-card" style="border-top: 3px solid rgba(255, 255, 255, 0.2);">
+        <div class="small fw-bold text-muted text-uppercase tracking-badge" style="font-size: 0.72rem;">Pending Applicants</div>
+        <div class="stat-number text-white mt-1" style="font-size: 2rem; font-family: var(--font-display);">
           {{ pending_applicants|length }}
         </div>
-        <div class="small text-muted mt-1"><i class="bi bi-person-exclamation text-warning me-1"></i>Awaiting store review</div>
+        <div class="small text-muted mt-1"><i class="bi bi-person-exclamation text-lime me-1"></i>Awaiting review</div>
       </div>
     </div>
 
     <!-- Card 3: Hired Workers -->
     <div class="col-6 col-lg-3">
-      <div class="admin-kpi-card" style="border-top: 3px solid #00E676;">
-        <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Hired Helpers</div>
-        <div class="stat-number text-success mt-1" style="font-size: 2rem;">
+      <div class="admin-kpi-card" style="border-top: 3px solid #C6F432;">
+        <div class="small fw-bold text-muted text-uppercase tracking-badge" style="font-size: 0.72rem;">Hired Helpers</div>
+        <div class="stat-number text-lime mt-1" style="font-size: 2rem; font-family: var(--font-display);">
           {{ hired_candidates|length }}
         </div>
-        <div class="small text-muted mt-1"><i class="bi bi-check2-circle text-success me-1"></i>Assigned to shifts</div>
+        <div class="small text-muted mt-1"><i class="bi bi-check2-circle text-lime me-1"></i>Assigned to shifts</div>
       </div>
     </div>
 
     <!-- Card 4: Store Views -->
     <div class="col-6 col-lg-3">
-      <div class="admin-kpi-card" style="border-top: 3px solid #00E5FF;">
-        <div class="small fw-bold text-muted text-uppercase" style="letter-spacing: 0.8px; font-size: 0.72rem;">Shift Views</div>
-        <div class="stat-number text-info mt-1" style="font-size: 2rem;">
+      <div class="admin-kpi-card" style="border-top: 3px solid #C6F432;">
+        <div class="small fw-bold text-muted text-uppercase tracking-badge" style="font-size: 0.72rem;">Shift Views</div>
+        <div class="stat-number text-white mt-1" style="font-size: 2rem; font-family: var(--font-display);">
           {{ total_views }}
         </div>
-        <div class="small text-muted mt-1"><i class="bi bi-eye text-info me-1"></i>Seeker impressions</div>
+        <div class="small text-muted mt-1"><i class="bi bi-eye text-lime me-1"></i>Candidate views</div>
       </div>
     </div>
   </div>

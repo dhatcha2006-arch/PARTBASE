@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0B0B0C;
+    color: #FFFFFF;
+    overflow-x: hidden;
+  }
+}
+
+/* 3D Dashboard Perspective */
+.perspective-container {
+  perspective: 1200px;
+}
+
+.tilt-left {
+  transform: rotateY(8deg) rotateX(3deg) translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.tilt-left:hover {
+  transform: rotateY(3deg) rotateX(1deg) translateY(-6px) translateZ(10px);
+}
+
+.tilt-right {
+  transform: rotateY(-8deg) rotateX(3deg) translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.tilt-right:hover {
+  transform: rotateY(-3deg) rotateX(1deg) translateY(-6px) translateZ(10px);
+}
+
+.center-panel {
+  transform: translateZ(25px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.center-panel:hover {
+  transform: translateZ(35px) translateY(-8px);
+}
+
+/* Light beams animation */
+@keyframes beamGlow {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scaleY(1.08);
+  }
+}
+
+.animate-beam-glow {
+  animation: beamGlow 6s ease-in-out infinite;
+}
+
+/* Pulsing button glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(198, 244, 50, 0.4), 0 0 40px rgba(198, 244, 50, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(198, 244, 50, 0.65), 0 0 65px rgba(198, 244, 50, 0.28);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.8s ease-in-out infinite;
+}
+
+/* Glass panel border */
+.glass-panel {
+  background: linear-gradient(180deg, #161618 0%, #0F0F10 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(16px);
+}
+
+.glass-panel-glow {
+  background: linear-gradient(180deg, #18181B 0%, #101012 100%);
+  border: 1px solid rgba(198, 244, 50, 0.2);
+}
+
+/* Hide scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

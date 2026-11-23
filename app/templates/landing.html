@@ -1,202 +1,522 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container py-4">
-  <!-- Top Pill Banner (Juspay style) -->
-  <div class="d-flex justify-content-center mb-4">
-    <div class="metric-pill">
-      <span class="live-indicator me-1"></span>
-      <span>Chennai Hyper-Local Work Platform</span>
-      <span class="text-white-50">|</span>
-      <span class="text-white">OMR &amp; Anna Nagar Active</span>
+<div class="position-relative overflow-hidden pt-2 pb-5">
+  <!-- Glowing Lime Radial Background & Upward Auroral Light Beams -->
+  <div class="hero-glow-container">
+    <div class="hero-radial-glow"></div>
+    <div class="hero-beams">
+      <div class="hero-beam-side me-n4"></div>
+      <div class="hero-beam-center"></div>
+      <div class="hero-beam-side ms-n4"></div>
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <div class="row align-items-center my-4 py-4 g-5">
-    <div class="col-lg-6">
-      <h1 class="hero-title mb-3">
-        India's First<br>
-        <span class="text-gradient">Local Work Platform.</span>
-      </h1>
-      <p class="hero-subtitle mb-4">
-        Connecting neighborhood businesses in Chennai with nearby helpers. Instant local matching, zero registration fees, and direct daily settlements.
+  <div class="container position-relative z-1 pt-3 pt-md-5">
+    <!-- Top Pill Live Indicator -->
+    <div class="d-flex justify-content-center mb-4">
+      <div class="metric-pill shadow-sm">
+        <span class="live-indicator"></span>
+        <span class="text-white">540+ neighborhood shifts available today</span>
+        <span class="text-lime fw-bold ms-1">Live</span>
+      </div>
+    </div>
+
+    <!-- Hero Main Row: Left Stats, Centered Headline, Right Stats -->
+    <div class="row align-items-center justify-content-between g-4 text-center text-lg-start">
+      
+      <!-- Left Stats (Desktop) -->
+      <div class="col-lg-2 d-none d-lg-flex flex-column gap-5 text-start ps-4">
+        <div>
+          <div class="display-5 fw-bold text-white lh-1" style="font-family: var(--font-display);">3x</div>
+          <div class="small fw-semibold text-muted tracking-badge mt-2">FASTER TO APPLY</div>
+        </div>
+        <div>
+          <div class="display-5 fw-bold text-white lh-1" style="font-family: var(--font-display);">87%</div>
+          <div class="small fw-semibold text-muted tracking-badge mt-2">REPLIES IN 24H</div>
+        </div>
+      </div>
+
+      <!-- Center Headline & CTA Buttons -->
+      <div class="col-lg-8 text-center px-lg-4">
+        <h1 class="text-white fw-bold display-3 mb-3 tracking-tight" style="font-family: var(--font-display); line-height: 1.05;">
+          Find part-time jobs<br class="d-none d-sm-block">
+          <span class="text-lime">near you.</span>
+        </h1>
+        <p class="fs-5 text-muted mx-auto mb-4" style="max-width: 620px; font-weight: 400; line-height: 1.6;">
+          PartBase connects you with shops and businesses around the corner. Pick a shift, apply in one tap, and start this week.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mb-3">
+          <a href="{{ url_for('seeker.jobs') }}" class="btn btn-lg btn-lv-primary animate-pulse-glow">
+            <i class="bi bi-geo-alt-fill me-1"></i> Find jobs near me
+          </a>
+          <a href="{{ url_for('employer.post_job') }}" class="btn btn-lg btn-lv-outline">
+            Post a job <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+
+        <!-- 1-Click Instant Demo Sandbox -->
+        <div class="d-inline-flex align-items-center gap-2 p-2 rounded-pill mt-3" style="background: rgba(22, 22, 24, 0.7); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <span class="badge text-dark bg-lime rounded-pill px-2 py-1 small fw-bold">1-CLICK DEMO</span>
+          <a href="{{ url_for('auth.demo_login', role='seeker') }}" class="text-white small px-2 hover-lime">Seeker Portal</a>
+          <span class="text-white-50">·</span>
+          <a href="{{ url_for('auth.demo_login', role='employer') }}" class="text-white small px-2 hover-lime">Employer Suite</a>
+          <span class="text-white-50">·</span>
+          <a href="{{ url_for('auth.demo_login', role='admin') }}" class="text-white small px-2 hover-lime">Admin Hub</a>
+        </div>
+      </div>
+
+      <!-- Right Stats (Desktop) -->
+      <div class="col-lg-2 d-none d-lg-flex flex-column gap-5 text-end pe-4 align-items-end">
+        <div>
+          <div class="display-5 fw-bold text-white lh-1" style="font-family: var(--font-display);">1,420+</div>
+          <div class="small fw-semibold text-muted tracking-badge mt-2">LOCAL SHOPS</div>
+        </div>
+        <div>
+          <div class="display-5 fw-bold text-white lh-1" style="font-family: var(--font-display);">28.5K</div>
+          <div class="small fw-semibold text-muted tracking-badge mt-2">SHIFTS FILLED</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Stats Grid -->
+    <div class="row g-2 d-lg-none mt-4 text-center">
+      <div class="col-6 col-sm-3">
+        <div class="p-3 rounded-4 glass-panel">
+          <div class="fs-3 fw-bold text-white" style="font-family: var(--font-display);">3x</div>
+          <div class="small text-muted tracking-badge">FASTER TO APPLY</div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3">
+        <div class="p-3 rounded-4 glass-panel">
+          <div class="fs-3 fw-bold text-white" style="font-family: var(--font-display);">87%</div>
+          <div class="small text-muted tracking-badge">REPLIES IN 24H</div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3">
+        <div class="p-3 rounded-4 glass-panel">
+          <div class="fs-3 fw-bold text-white" style="font-family: var(--font-display);">1,420+</div>
+          <div class="small text-muted tracking-badge">LOCAL SHOPS</div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3">
+        <div class="p-3 rounded-4 glass-panel">
+          <div class="fs-3 fw-bold text-white" style="font-family: var(--font-display);">28.5K</div>
+          <div class="small text-muted tracking-badge">SHIFTS FILLED</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D HERO DASHBOARD PANELS (Matches reference screenshot) -->
+    <div class="perspective-container mt-5 pt-3">
+      <div class="row g-4 justify-content-center align-items-center" style="margin-bottom: -60px;">
+        
+        <!-- Panel 1: Jobs Near You (Tilted Left) -->
+        <div class="col-lg-4 col-md-6 order-2 order-lg-1">
+          <div class="glass-panel p-4 tilt-left shadow-lg" style="height: 380px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="live-indicator"></span>
+                <span class="small fw-bold text-muted tracking-badge">Jobs near you</span>
+              </div>
+              <div class="d-flex flex-column gap-2">
+                <!-- Row 1 -->
+                <div class="d-flex align-items-center justify-content-between p-2 rounded-3" style="background: rgba(15, 15, 16, 0.7); border: 1px solid rgba(255, 255, 255, 0.05);">
+                  <div class="d-flex align-items-center gap-2.5">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white" style="width: 32px; height: 32px; background: #222226; font-size: 11px;">AK</div>
+                    <div>
+                      <div class="small fw-bold text-white">Barista</div>
+                      <div class="text-muted" style="font-size: 11px;">Blue Tokai Cafe · 0.4 km</div>
+                    </div>
+                  </div>
+                  <span class="badge text-dark bg-lime rounded-pill px-2.5 py-1 fw-bold" style="font-size: 11px;">Hiring</span>
+                </div>
+                <!-- Row 2 -->
+                <div class="d-flex align-items-center justify-content-between p-2 rounded-3" style="background: rgba(15, 15, 16, 0.7); border: 1px solid rgba(255, 255, 255, 0.05);">
+                  <div class="d-flex align-items-center gap-2.5">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white" style="width: 32px; height: 32px; background: #222226; font-size: 11px;">MS</div>
+                    <div>
+                      <div class="small fw-bold text-white">Store Cashier</div>
+                      <div class="text-muted" style="font-size: 11px;">Reliance Smart · 0.8 km</div>
+                    </div>
+                  </div>
+                  <span class="badge rounded-pill px-2.5 py-1 text-lime" style="border: 1px solid var(--pb-border-lime); font-size: 11px;">New</span>
+                </div>
+                <!-- Row 3 -->
+                <div class="d-flex align-items-center justify-content-between p-2 rounded-3" style="background: rgba(15, 15, 16, 0.7); border: 1px solid rgba(255, 255, 255, 0.05);">
+                  <div class="d-flex align-items-center gap-2.5">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white" style="width: 32px; height: 32px; background: #222226; font-size: 11px;">JL</div>
+                    <div>
+                      <div class="small fw-bold text-white">Floor Assistant</div>
+                      <div class="text-muted" style="font-size: 11px;">Decathlon Sports · 1.2 km</div>
+                    </div>
+                  </div>
+                  <span class="badge rounded-pill px-2.5 py-1 text-muted" style="border: 1px solid rgba(255, 255, 255, 0.15); font-size: 11px;">Mornings</span>
+                </div>
+                <!-- Row 4 -->
+                <div class="d-flex align-items-center justify-content-between p-2 rounded-3" style="background: rgba(15, 15, 16, 0.7); border: 1px solid rgba(255, 255, 255, 0.05);">
+                  <div class="d-flex align-items-center gap-2.5">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white" style="width: 32px; height: 32px; background: #222226; font-size: 11px;">RP</div>
+                    <div>
+                      <div class="small fw-bold text-white">Dispatch Associate</div>
+                      <div class="text-muted" style="font-size: 11px;">Express Hub · 1.6 km</div>
+                    </div>
+                  </div>
+                  <span class="badge rounded-pill px-2.5 py-1 text-muted" style="border: 1px solid rgba(255, 255, 255, 0.15); font-size: 11px;">Evenings</span>
+                </div>
+              </div>
+            </div>
+            <div class="pt-3 border-top border-white border-opacity-10 d-flex justify-content-between small text-muted">
+              <span>Updated 3m ago</span>
+              <span class="text-lime fw-semibold">12 new within 2 km</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Match Score (Center Elevated, Taller) -->
+        <div class="col-lg-4 col-md-8 order-1 order-lg-2">
+          <div class="glass-panel glass-panel-glow p-4 center-panel" style="height: 410px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="live-indicator"></span>
+                  <span class="small fw-bold text-muted tracking-badge">Match score</span>
+                </div>
+                <span class="badge rounded-pill text-lime px-3 py-1.5 fw-semibold" style="background: rgba(198, 244, 50, 0.12); border: 1px solid var(--pb-border-lime); font-size: 11px;">
+                  <i class="bi bi-stars me-1"></i> Auto-apply on
+                </span>
+              </div>
+              <div class="d-flex align-items-baseline gap-2 mb-1">
+                <span class="display-3 fw-bold text-white lh-1" style="font-family: var(--font-display);">94</span>
+                <span class="text-muted fs-6">/ 100 job fit</span>
+              </div>
+              <p class="small text-muted mb-0">Your free slots match 18 morning shifts at cafes & retail hubs.</p>
+            </div>
+
+            <!-- Glowing SVG Line Chart -->
+            <div class="position-relative w-100" style="height: 180px;">
+              <svg viewBox="0 0 320 140" class="w-100 h-100 overflow-visible" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="scoreArea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#C6F432" stop-opacity="0.38"/>
+                    <stop offset="100%" stop-color="#C6F432" stop-opacity="0.0"/>
+                  </linearGradient>
+                  <filter id="limeGlowChart" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#C6F432" flood-opacity="0.8"/>
+                  </filter>
+                </defs>
+                <!-- Area -->
+                <path d="M 10 115 Q 60 100 110 75 T 190 60 T 260 38 L 310 22 L 310 135 L 10 135 Z" fill="url(#scoreArea)" />
+                <!-- Neon Lime Stroke -->
+                <path d="M 10 115 Q 60 100 110 75 T 190 60 T 260 38 L 310 22" fill="none" stroke="#C6F432" stroke-width="3.5" stroke-linecap="round" filter="url(#limeGlowChart)" />
+                <!-- End Node -->
+                <circle cx="310" cy="22" r="5" fill="#C6F432" />
+                <circle cx="310" cy="22" r="9" fill="none" stroke="#C6F432" stroke-width="1.5" opacity="0.6" />
+              </svg>
+              <div class="d-flex justify-content-between text-muted small pt-1" style="font-size: 10px; font-family: monospace;">
+                <span>MON</span>
+                <span>WED</span>
+                <span>FRI</span>
+                <span class="text-lime fw-bold">TODAY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Shift Timeline (Tilted Right) -->
+        <div class="col-lg-4 col-md-6 order-3">
+          <div class="glass-panel p-4 tilt-right shadow-lg position-relative" style="height: 380px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="live-indicator"></span>
+                <span class="small fw-bold text-muted tracking-badge">Shift timeline</span>
+              </div>
+              <div class="d-flex justify-content-between text-muted small pb-2 border-bottom border-white border-opacity-10" style="font-family: monospace; font-size: 11px;">
+                <span>08:00</span>
+                <span>10:00</span>
+                <span>12:00</span>
+                <span>14:00</span>
+                <span>16:00</span>
+              </div>
+
+              <!-- Shift Schedule Rows -->
+              <div class="position-relative pt-3" style="min-height: 180px;">
+                <!-- Vertical NOW needle -->
+                <div class="position-absolute top-0 bottom-0" style="left: 48%; width: 2px; background: #C6F432; box-shadow: 0 0 10px #C6F432; z-index: 5;">
+                  <div class="position-absolute" style="top: -4px; left: -4px; width: 10px; height: 10px; background: #C6F432; border-radius: 2px;"></div>
+                </div>
+
+                <!-- Row 1 -->
+                <div class="position-relative mb-3" style="height: 24px;">
+                  <div class="position-absolute rounded-2" style="left: 4%; width: 34%; height: 20px; background: #222226;"></div>
+                  <div class="position-absolute rounded-2" style="left: 54%; width: 40%; height: 20px; background: #222226;"></div>
+                </div>
+
+                <!-- Row 2: Selected Lime Shift -->
+                <div class="position-relative mb-3" style="height: 28px;">
+                  <div class="position-absolute rounded-2 text-dark fw-bold d-flex align-items-center px-2" style="left: 10%; width: 48%; height: 26px; background: #C6F432; box-shadow: 0 0 15px rgba(198, 244, 50, 0.4); font-size: 10px;">
+                    08:30 – 12:30 · Barista
+                  </div>
+                  <div class="position-absolute rounded-2" style="left: 65%; width: 30%; height: 20px; background: #222226;"></div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="position-relative mb-3" style="height: 24px;">
+                  <div class="position-absolute rounded-2" style="left: 2%; width: 26%; height: 20px; background: #222226;"></div>
+                  <div class="position-absolute rounded-2 text-dark fw-bold d-flex align-items-center px-2" style="left: 56%; width: 40%; height: 24px; background: rgba(198, 244, 50, 0.9); font-size: 10px;">
+                    13:00 – 16:00 · Cashier
+                  </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="position-relative" style="height: 24px;">
+                  <div class="position-absolute rounded-2" style="left: 18%; width: 24%; height: 20px; background: #222226;"></div>
+                  <div class="position-absolute rounded-2" style="left: 46%; width: 30%; height: 20px; background: #222226;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-top border-white border-opacity-10 d-flex justify-content-between small text-muted">
+              <span><i class="bi bi-square-fill text-lime me-1"></i> Assigned (7 hrs)</span>
+              <span class="text-white fw-bold">₹1,640 earned today</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     BELOW THE FOLD SECTIONS
+     ========================================================================== -->
+<div class="container py-5 mt-4">
+  
+  <!-- Category Chips Filter -->
+  <div class="mb-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-2">
+      <div>
+        <span class="small fw-bold text-lime tracking-badge">Neighborhood Categories</span>
+        <h2 class="display-6 fw-bold text-white mb-0" style="font-family: var(--font-display);">Browse by shift type</h2>
+      </div>
+      <p class="text-muted small mb-0" style="max-width: 440px;">
+        Flexible shifts arranged around your schedule — morning runs, afternoon retail hours, or weekend event crew.
       </p>
-
-      <!-- Primary CTA Actions -->
-      <div class="d-flex flex-wrap gap-3 mb-4">
-        <a href="{{ url_for('seeker.jobs') }}" class="btn btn-lv-primary btn-lg">
-          Explore Openings <i class="bi bi-arrow-right ms-1"></i>
-        </a>
-        <a href="{{ url_for('employer.post_job') }}" class="btn btn-lv-outline btn-lg">
-          Post a Store Job
-        </a>
-      </div>
-
-      <!-- Trust Metrics Ribbon (Juspay style) -->
-      <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
-        <span class="metric-pill"><i class="bi bi-shield-check text-success"></i> Zero Candidate Fee</span>
-        <span class="metric-pill"><i class="bi bi-lightning-fill text-warning"></i> 30s Dispatch</span>
-        <span class="metric-pill"><i class="bi bi-geo-alt-fill text-info"></i> Within 3 KM Radius</span>
-      </div>
-
-      <!-- Quick 1-Click Demo Section -->
-      <div class="mt-4 p-3 rounded-3" style="background: rgba(255, 255, 255, 0.02); border: 1px dashed var(--jp-card-border);">
-        <div class="small fw-bold text-muted mb-2">⚡ INSTANT DEMO SANDBOX:</div>
-        <div class="d-flex flex-wrap gap-2">
-          <a href="{{ url_for('auth.demo_login', role='seeker') }}" class="btn btn-sm btn-lv-outline">Demo Seeker</a>
-          <a href="{{ url_for('auth.demo_login', role='employer') }}" class="btn btn-sm btn-lv-outline">Demo Employer</a>
-          <a href="{{ url_for('auth.demo_login', role='admin') }}" class="btn btn-sm btn-lv-outline">Admin Panel</a>
-        </div>
-      </div>
     </div>
 
-    <!-- Right Column: Interactive Live Job Queue Preview -->
-    <div class="col-lg-6">
-      <div class="lv-card p-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <div class="d-flex align-items-center gap-2">
-            <span class="live-indicator"></span>
-            <span class="small fw-bold text-white text-uppercase" style="letter-spacing: 0.5px;">Live Dispatched Jobs</span>
-          </div>
-          <a href="{{ url_for('seeker.jobs') }}" class="small fw-bold text-decoration-none">View All ↗</a>
-        </div>
-
-        <!-- Sample Card 1 -->
-        <a href="{{ url_for('seeker.jobs') }}" class="job-card boosted d-block text-decoration-none">
-          <div class="d-flex justify-content-between align-items-start gap-3">
-            <div style="flex: 1; min-width: 0;">
-              <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                <span class="fw-bold text-white fs-5">Shop Counter Helper</span>
-                <span class="chip chip-verified"><i class="bi bi-check-circle-fill me-1"></i>Verified</span>
-                <span class="chip chip-urgent"><i class="bi bi-lightning-charge-fill me-1"></i>Urgent</span>
-              </div>
-              <div class="text-muted small">
-                Sri Murugan Tailors · Today, 5–9 PM · <strong class="text-white">1.2 km away</strong> (Thoraipakkam, OMR)
-              </div>
-            </div>
-            <div class="text-end flex-shrink-0 ms-2" style="min-width: 110px;">
-              <div class="pay-amount">₹120/hr</div>
-              <div class="mt-2">
-                <span class="btn btn-sm btn-lv-primary py-1 px-3 d-inline-flex align-items-center justify-content-center" style="white-space: nowrap;">
-                  Apply <i class="bi bi-arrow-right ms-1"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- Sample Card 2 -->
-        <a href="{{ url_for('seeker.jobs') }}" class="job-card d-block mb-0 text-decoration-none">
-          <div class="d-flex justify-content-between align-items-start gap-3">
-            <div style="flex: 1; min-width: 0;">
-              <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                <span class="fw-bold text-white fs-5">Store Packing Assistant</span>
-                <span class="chip chip-verified"><i class="bi bi-check-circle-fill me-1"></i>Verified</span>
-              </div>
-              <div class="text-muted small">
-                Anand Stores · Weekend · <strong class="text-white">0.8 km away</strong> (Anna Nagar West)
-              </div>
-            </div>
-            <div class="text-end flex-shrink-0 ms-2" style="min-width: 110px;">
-              <div class="pay-amount">₹600/day</div>
-              <div class="mt-2">
-                <span class="btn btn-sm btn-lv-primary py-1 px-3 d-inline-flex align-items-center justify-content-center" style="white-space: nowrap;">
-                  Apply <i class="bi bi-arrow-right ms-1"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
+    <!-- Category Chips Scroll -->
+    <div class="d-flex align-items-center gap-2 overflow-x-auto pb-2" style="white-space: nowrap;">
+      <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary">
+        <i class="bi bi-grid-fill me-1"></i> All Roles
+      </a>
+      <a href="{{ url_for('seeker.jobs', category='delivery') }}" class="btn btn-sm btn-lv-outline">
+        <i class="bi bi-bicycle text-lime me-1"></i> Delivery
+      </a>
+      <a href="{{ url_for('seeker.jobs', category='shop_helper') }}" class="btn btn-sm btn-lv-outline">
+        <i class="bi bi-shop text-lime me-1"></i> Retail &amp; Cashier
+      </a>
+      <a href="{{ url_for('seeker.jobs', category='cafe') }}" class="btn btn-sm btn-lv-outline">
+        <i class="bi bi-cup-hot text-lime me-1"></i> Cafe &amp; Barista
+      </a>
+      <a href="{{ url_for('seeker.jobs', category='packing') }}" class="btn btn-sm btn-lv-outline">
+        <i class="bi bi-box-seam text-lime me-1"></i> Warehouse &amp; Packing
+      </a>
+      <a href="{{ url_for('seeker.jobs', category='tutoring') }}" class="btn btn-sm btn-lv-outline">
+        <i class="bi bi-mortarboard text-lime me-1"></i> Tutoring
+      </a>
     </div>
   </div>
 
-  <!-- Juspay-Style High-Impact Metrics Section -->
-  <div class="row g-4 my-5">
-    <div class="col-md-3 col-6">
-      <div class="stat-box">
-        <div class="stat-number">30s</div>
-        <div class="stat-label">Fast Job Dispatch Time</div>
+  <!-- Hiring Near You Today: Real Database Job Card Grid -->
+  <div class="my-5" id="jobs-section">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <span class="small fw-bold text-lime tracking-badge"><i class="bi bi-lightning-charge-fill me-1"></i> Live Openings</span>
+        <h2 class="display-6 fw-bold text-white mb-0" style="font-family: var(--font-display);">Hiring near you today</h2>
       </div>
+      <a href="{{ url_for('seeker.jobs') }}" class="small fw-bold text-lime text-decoration-none">
+        View All Jobs <i class="bi bi-arrow-right ms-1"></i>
+      </a>
     </div>
-    <div class="col-md-3 col-6">
-      <div class="stat-box">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Scam-Free Guaranteed</div>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="stat-box">
-        <div class="stat-number">&lt; 3 KM</div>
-        <div class="stat-label">Hyper-Local Neighborhood</div>
-      </div>
-    </div>
-    <div class="col-md-3 col-6">
-      <div class="stat-box">
-        <div class="stat-number">₹0</div>
-        <div class="stat-label">Fee Charged to Job Seekers</div>
-      </div>
+
+    <!-- Job Cards -->
+    <div class="row g-4">
+      {% for job in sample_jobs %}
+        <div class="col-lg-6">
+          {% include 'components/_job_card.html' %}
+        </div>
+      {% else %}
+        <div class="col-12 text-center py-5 glass-panel">
+          <p class="text-muted">Loading live neighborhood openings...</p>
+          <a href="{{ url_for('seeker.jobs') }}" class="btn btn-sm btn-lv-primary">Explore All Shifts</a>
+        </div>
+      {% endfor %}
     </div>
   </div>
 
-  <!-- Enterprise Category Modular Grid -->
-  <div class="my-5 py-4">
+  <!-- How It Works: 3 Steps -->
+  <div class="my-5 py-5" id="how-it-works">
     <div class="text-center mb-5">
-      <span class="chip chip-open mb-2">Micro-Job Categories</span>
-      <h2 class="fw-bold text-white">Neighbourhood Work Infrastructure</h2>
-      <p class="text-muted">Flexible work designed for students and homemakers in Chennai</p>
+      <span class="small fw-bold text-lime tracking-badge">Frictionless Hiring</span>
+      <h2 class="display-5 fw-bold text-white mb-2" style="font-family: var(--font-display);">How PartBase works</h2>
+      <p class="text-muted small mx-auto" style="max-width: 520px;">
+        No resume writing, no ghosting agencies. Connect directly with local shopkeepers who need your help this week.
+      </p>
     </div>
 
     <div class="row g-4">
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{{ url_for('seeker.jobs', category='shop_helper') }}" class="category-card d-block">
-          <div class="icon-wrapper"><i class="bi bi-shop"></i></div>
-          <h6 class="fw-bold text-white mb-1">Shop Helper</h6>
-          <span class="small" style="color: var(--jp-cyan);">₹100–150/hr</span>
-        </a>
+      <div class="col-md-4">
+        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="display-4 fw-bold text-lime opacity-50" style="font-family: var(--font-display);">01</span>
+              <div class="p-2 rounded-3 bg-dark border border-white border-opacity-10 text-lime"><i class="bi bi-search fs-5"></i></div>
+            </div>
+            <h4 class="fw-bold text-white mb-2">Spot Jobs in Your Pin Code</h4>
+            <p class="text-muted small">Set your neighborhood radius. Discover verified openings at neighborhood cafes, boutiques, and stores within walking distance.</p>
+          </div>
+          <div class="pt-3 border-top border-white border-opacity-10 small text-lime fw-semibold">Step 1 of 3</div>
+        </div>
       </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{{ url_for('seeker.jobs', category='packing') }}" class="category-card d-block">
-          <div class="icon-wrapper"><i class="bi bi-box-seam"></i></div>
-          <h6 class="fw-bold text-white mb-1">Packing</h6>
-          <span class="small" style="color: var(--jp-cyan);">₹500–700/day</span>
-        </a>
+
+      <div class="col-md-4">
+        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="display-4 fw-bold text-lime opacity-50" style="font-family: var(--font-display);">02</span>
+              <div class="p-2 rounded-3 bg-dark border border-white border-opacity-10 text-lime"><i class="bi bi-hand-index-thumb fs-5"></i></div>
+            </div>
+            <h4 class="fw-bold text-white mb-2">1-Tap Apply With Shift Fit</h4>
+            <p class="text-muted small">No lengthy CVs or formal cover letters. Select your free time slots, match with owner requirements, and apply directly in 30 seconds.</p>
+          </div>
+          <div class="pt-3 border-top border-white border-opacity-10 small text-lime fw-semibold">Step 2 of 3</div>
+        </div>
       </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{{ url_for('seeker.jobs', category='delivery') }}" class="category-card d-block">
-          <div class="icon-wrapper"><i class="bi bi-bicycle"></i></div>
-          <h6 class="fw-bold text-white mb-1">Delivery</h6>
-          <span class="small" style="color: var(--jp-cyan);">₹120–180/hr</span>
-        </a>
-      </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{{ url_for('seeker.jobs', category='event_staff') }}" class="category-card d-block">
-          <div class="icon-wrapper"><i class="bi bi-calendar-event"></i></div>
-          <h6 class="fw-bold text-white mb-1">Event Staff</h6>
-          <span class="small" style="color: var(--jp-cyan);">₹600–1000/day</span>
-        </a>
-      </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{{ url_for('seeker.jobs', category='tutoring') }}" class="category-card d-block">
-          <div class="icon-wrapper"><i class="bi bi-book"></i></div>
-          <h6 class="fw-bold text-white mb-1">Tutoring</h6>
-          <span class="small" style="color: var(--jp-cyan);">₹200–350/hr</span>
-        </a>
-      </div>
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{{ url_for('seeker.jobs', category='data_entry') }}" class="category-card d-block">
-          <div class="icon-wrapper"><i class="bi bi-laptop"></i></div>
-          <h6 class="fw-bold text-white mb-1">Data Entry</h6>
-          <span class="small" style="color: var(--jp-cyan);">₹150–200/hr</span>
-        </a>
+
+      <div class="col-md-4">
+        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="display-4 fw-bold text-lime opacity-50" style="font-family: var(--font-display);">03</span>
+              <div class="p-2 rounded-3 bg-dark border border-white border-opacity-10 text-lime"><i class="bi bi-check2-circle fs-5"></i></div>
+            </div>
+            <h4 class="fw-bold text-white mb-2">Start This Week &amp; Get Paid</h4>
+            <p class="text-muted small">Hear back directly from owners in under 24 hours. Clock in your shifts and receive transparent hourly payments with zero deductions.</p>
+          </div>
+          <div class="pt-3 border-top border-white border-opacity-10 small text-lime fw-semibold">Step 3 of 3</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Safety Banner (Strict Zero Fee Policy) -->
-  <div class="my-4">
-    {% include 'components/_safety_banner.html' %}
+  <!-- For Shop Owners CTA -->
+  <div class="my-5 py-4" id="for-shops">
+    <div class="glass-panel-glow p-4 p-md-5 rounded-4 position-relative overflow-hidden">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <span class="badge rounded-pill text-lime px-3 py-1.5 fw-bold mb-3" style="background: rgba(198, 244, 50, 0.12); border: 1px solid var(--pb-border-lime); font-size: 11px;">
+            <i class="bi bi-shop me-1"></i> FOR LOCAL BUSINESS OWNERS
+          </span>
+          <h2 class="display-6 fw-bold text-white mb-3" style="font-family: var(--font-display);">
+            Short on staff this weekend?<br>
+            <span class="text-lime">Post a job in 2 minutes.</span>
+          </h2>
+          <p class="text-muted mb-4" style="max-width: 580px;">
+            Whether you run a coffee bar, boutique, supermarket, or packing depot, PartBase connects you with dependable local workers ready to start tomorrow.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="{{ url_for('employer.post_job') }}" class="btn btn-lg btn-lv-primary">
+              Post a job in 2 minutes <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a href="{{ url_for('auth.demo_login', role='employer') }}" class="btn btn-lg btn-lv-outline">
+              Demo Merchant Suite
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 text-center d-none d-lg-block">
+          <div class="p-4 rounded-4 text-start" style="background: rgba(15, 15, 16, 0.85); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="live-indicator"></span>
+              <span class="small fw-bold text-white">Average response speed</span>
+            </div>
+            <div class="display-5 fw-bold text-lime mb-1" style="font-family: var(--font-display);">18 mins</div>
+            <p class="text-muted small mb-0">From posting a shift to receiving your first verified local applicant.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="my-5 py-4">
+    <div class="text-center mb-5">
+      <span class="small fw-bold text-lime tracking-badge">Community Stories</span>
+      <h2 class="display-6 fw-bold text-white mb-2" style="font-family: var(--font-display);">Loved by workers and neighborhood shops</h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="text-lime mb-2">
+              <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-muted-light small fst-italic mb-4">
+              "I found a barista role 500 meters from my apartment in Indiranagar. I pick 3 morning shifts a week around my college schedule and get paid ₹14,000 every month without disrupting exams."
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2 pt-3 border-top border-white border-opacity-10">
+            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-lime" style="width: 34px; height: 34px; background: #222226; font-size: 11px;">RV</div>
+            <div>
+              <div class="small fw-bold text-white">Rohan V.</div>
+              <div class="text-muted" style="font-size: 11px;">Student &amp; Weekend Barista</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="text-lime mb-2">
+              <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-muted-light small fst-italic mb-4">
+              "Finding dependable local help for our bakery weekend rushes used to take weeks of posting in neighborhood groups. With PartBase, we found two verified students in 4 hours."
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2 pt-3 border-top border-white border-opacity-10">
+            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-lime" style="width: 34px; height: 34px; background: #222226; font-size: 11px;">MK</div>
+            <div>
+              <div class="small fw-bold text-white">Meera K.</div>
+              <div class="text-muted" style="font-size: 11px;">Founder, The Crust Collective</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="glass-panel p-4 h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="text-lime mb-2">
+              <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-muted-light small fst-italic mb-4">
+              "The auto-apply and shift timeline match gave me 3 shift offers in my first 48 hours. Clear hourly rates with no hidden agency fees."
+            </p>
+          </div>
+          <div class="d-flex align-items-center gap-2 pt-3 border-top border-white border-opacity-10">
+            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-lime" style="width: 34px; height: 34px; background: #222226; font-size: 11px;">KS</div>
+            <div>
+              <div class="small fw-bold text-white">Kavya S.</div>
+              <div class="text-muted" style="font-size: 11px;">Retail Floor Specialist</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

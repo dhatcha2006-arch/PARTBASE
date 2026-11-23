@@ -67,7 +67,7 @@
         <h5 class="fw-bold text-white mb-2">Hiring Decision</h5>
         <p class="text-muted small mb-4">Direct contact is established once status is updated.</p>
 
-        <form method="POST" action="{{ url_for('employer.update_application_status', app_id=application.id) }}">
+        <form method="POST" action="{{ url_for('employer.update_applicant_status', app_id=application.id) }}">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
           {% if seeker.phone %}

@@ -1,5 +1,5 @@
 // PARTBASE Progressive Web App Service Worker
-const CACHE_NAME = 'partbase-v1';
+const CACHE_NAME = 'partbase-v2';
 const STATIC_ASSETS = [
   '/',
   '/static/css/main.css',
