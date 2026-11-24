@@ -250,3 +250,10 @@ def verify_employer(shop_id):
     db.session.commit()
 
     return redirect(url_for("admin.employers"))
+
+def filter_shops_by_keyword(query, shops):
+    """Helper filter for moderation queue matching query."""
+    if not query:
+        return shops
+    q = query.lower()
+    return [s for s in shops if q in (s.shop_name or '').lower() or q in (s.address or '').lower()]
