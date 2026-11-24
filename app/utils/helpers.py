@@ -127,3 +127,12 @@ def format_inr(amount):
 def log_telemetry_event(event_name, data=None):
     """Log lightweight client/server telemetry event for local monitoring."""
     return {"event": event_name, "data": data or {}}
+
+def format_relative_time(minutes_ago):
+    """Format elapsed minutes into human-readable relative time."""
+    if minutes_ago < 1:
+        return "Just now"
+    elif minutes_ago < 60:
+        return f"{minutes_ago}m ago"
+    hours = minutes_ago // 60
+    return f"{hours}h ago"
