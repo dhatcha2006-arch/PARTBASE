@@ -23,3 +23,9 @@ def test_format_inr():
     assert format_inr(1000) == "₹1,000"
     assert format_inr(150000) == "₹1,50,000"
     assert format_inr(None) == "₹0"
+
+def test_format_relative_time_helper():
+    from app.utils.helpers import format_relative_time
+    assert format_relative_time(0) == "Just now"
+    assert format_relative_time(15) == "15m ago"
+    assert format_relative_time(120) == "2h ago"
