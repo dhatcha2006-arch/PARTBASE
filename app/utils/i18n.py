@@ -10,7 +10,10 @@ JOB_CATEGORIES_TA = {
     "cleaning": "சுத்தம் செய்தல்",
     "data_entry": "டேட்டா என்ட்ரி",
     "delivery": "டெலிவரி உதவியாளர்",
-    "promoter": "கடை விளம்பரதாரர்"
+    "promoter": "கடை விளம்பரதாரர்",
+    "retail_assistant": "சில்லறை விற்பனை உதவியாளர்",
+    "shelf_stocker": "பொருட்கள் அடுக்குபவர்",
+    "billing_clerk": "பில்லிங் எழுத்தர்"
 }
 
 DAYS_TA = {
@@ -36,7 +39,9 @@ UI_STRINGS = {
         "employer_plan": "Shop Owner Plan",
         "btn_apply": "Quick Apply",
         "btn_post": "Publish Shift",
-        "apply_success": "Application Sent Successfully"
+        "apply_success": "Application Sent Successfully",
+        "saved_jobs": "Saved Jobs",
+        "quick_shifts": "Quick Shifts (2-4 hrs)"
     },
     "ta": {
         "nav_jobs": "வேலைகளைப் பாருங்கள்",
@@ -54,7 +59,9 @@ UI_STRINGS = {
         "employer_plan": "கடை உரிமையாளர்",
         "btn_apply": "உடனே விண்ணப்பிக்க",
         "btn_post": "வேலை விளம்பரம் செய்",
-        "apply_success": "விண்ணப்பம் வெற்றிகரமாக அனுப்பப்பட்டது"
+        "apply_success": "விண்ணப்பம் வெற்றிகரமாக அனுப்பப்பட்டது",
+        "saved_jobs": "சேமிக்கப்பட்ட வேலைகள்",
+        "quick_shifts": "குறுகிய நேர வேலைகள் (2-4 மணி)"
     }
 }
 
