@@ -70,3 +70,10 @@ def test_ui_saved_jobs_translation(app):
         assert t("saved_jobs") == "சேமிக்கப்பட்ட வேலைகள்"
         session["lang"] = "en"
         assert t("saved_jobs") == "Saved Jobs"
+
+def test_validation_messages_i18n(app):
+    with app.test_request_context("/"):
+        session["lang"] = "ta"
+        assert "மொபைல்" in t("phone_invalid")
+        session["lang"] = "en"
+        assert "10-digit" in t("phone_invalid")
