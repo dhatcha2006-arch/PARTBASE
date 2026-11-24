@@ -41,7 +41,9 @@ UI_STRINGS = {
         "btn_post": "Publish Shift",
         "apply_success": "Application Sent Successfully",
         "saved_jobs": "Saved Jobs",
-        "quick_shifts": "Quick Shifts (2-4 hrs)"
+        "quick_shifts": "Quick Shifts (2-4 hrs)",
+        "phone_invalid": "Enter valid 10-digit Indian phone number",
+        "otp_required": "Please enter 6-digit OTP code"
     },
     "ta": {
         "nav_jobs": "வேலைகளைப் பாருங்கள்",
@@ -61,7 +63,9 @@ UI_STRINGS = {
         "btn_post": "வேலை விளம்பரம் செய்",
         "apply_success": "விண்ணப்பம் வெற்றிகரமாக அனுப்பப்பட்டது",
         "saved_jobs": "சேமிக்கப்பட்ட வேலைகள்",
-        "quick_shifts": "குறுகிய நேர வேலைகள் (2-4 மணி)"
+        "quick_shifts": "குறுகிய நேர வேலைகள் (2-4 மணி)",
+        "phone_invalid": "சரியான 10 இலக்க இந்திய மொபைல் எண்ணை உள்ளிடவும்",
+        "otp_required": "தயவுசெய்து 6 இலக்க OTP குறியீட்டை உள்ளிடவும்"
     }
 }
 
