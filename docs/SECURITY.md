@@ -18,3 +18,11 @@ PARTBASE enforces a strict zero-fee policy across all Chennai clusters:
 - **6-Digit OTP Verification**: Passwords are eliminated; authentication uses one-time SMS verification.
 - **Rate Limiting**: Phone numbers are restricted to a maximum of 3 failed attempts before a 10-minute cooldown window is triggered.
 - **Session Protection**: Flask sessions use `HttpOnly`, `SameSite=Lax`, and CSRF tokens across all form submissions.
+
+
+## 7. Security Headers & Telemetry Rules
+
+PARTBASE incorporates defense-in-depth HTTP headers:
+- `X-Frame-Options: DENY`: Prevents clickjacking attacks.
+- `X-Content-Type-Options: nosniff`: Mitigates MIME sniffing exploits.
+- `Content-Security-Policy`: Restricts inline injection vectors.
