@@ -6,6 +6,13 @@
   "display": "standalone",
   "background_color": "#0B0B0C",
   "theme_color": "#C6F432",
+  "shortcuts": [
+    {
+      "name": "Find Jobs",
+      "url": "/seeker/jobs",
+      "description": "Find local micro-jobs in Chennai"
+    }
+  ],
   "icons": [
     {
       "src": "/static/img/favicon.svg",
