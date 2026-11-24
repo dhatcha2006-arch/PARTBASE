@@ -340,3 +340,17 @@ def draft():
     draft_record = Draft.query.filter_by(user_id=user_id).first()
     data = json.loads(draft_record.payload) if draft_record and draft_record.payload else None
     return api_response(ok=True, data=data)
+
+@api_bp.route('/health', methods=['GET'])
+def api_health():
+    """Health check endpoint returning system status and current timestamp."""
+    return api_response(
+        ok=True,
+        data={
+            "status": "healthy",
+            "service": "partbase",
+            "version": "1.2.0",
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        },
+        message="PARTBASE micro-job API is operating nominally"
+    )
