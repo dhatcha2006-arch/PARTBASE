@@ -35,7 +35,7 @@ export default function Hero({ onFindJobsClick, onPostJobClick, onSelectJob }) {
           {/* Centered Headline & CTAs */}
           <div className="lg:col-span-8 flex flex-col items-center text-center px-2">
             {/* Neighborhood Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface/80 border border-white/10 text-xs font-medium text-white mb-6 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 hero-live-badge px-3.5 py-1.5 rounded-full bg-surface/80 border border-white/10 text-xs font-medium text-white mb-6 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-lime animate-ping" />
               <span>540+ neighborhood shifts available today</span>
               <span className="text-lime text-xs font-semibold pl-1">Live</span>
