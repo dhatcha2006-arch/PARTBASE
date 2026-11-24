@@ -354,3 +354,9 @@ def api_health():
         },
         message="PARTBASE micro-job API is operating nominally"
     )
+
+@api_bp.route('/locations', methods=['GET'])
+def api_locations():
+    """List supported Chennai pilot delivery and job locations."""
+    from app.utils.geo import CHENNAI_AREAS
+    return api_response(ok=True, data={"zones": list(CHENNAI_AREAS.keys()), "count": len(CHENNAI_AREAS)})
