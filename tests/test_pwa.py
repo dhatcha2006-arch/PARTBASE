@@ -14,3 +14,8 @@ def test_pwa_service_worker_reachable(client):
     assert res.status_code == 200
     assert b"CACHE_NAME" in res.data
     assert b"addEventListener" in res.data
+
+def test_pwa_service_worker_v3_cache_name(client):
+    res = client.get("/static/sw.js")
+    assert res.status_code == 200
+    assert b"partbase-v3" in res.data
