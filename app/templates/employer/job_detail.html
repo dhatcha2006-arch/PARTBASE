@@ -7,6 +7,8 @@
     <a href="{{ url_for('employer.posts') }}" class="jp-cta-link small">
       <i class="bi bi-arrow-left me-1"></i> Back to My Postings
     </a>
+    <button type="button" class="btn btn-sm btn-outline-secondary ms-2" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!');"><i class="bi bi-share me-1"></i>Share Shift</button>
+    </a>
   </div>
 
   <!-- Job Header Title & Status -->
