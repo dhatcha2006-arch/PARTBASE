@@ -72,3 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
     pill.title = "Click to filter quick shifts";
   });
 });
+
+// Search history suggestion helper
+function getRecentJobSearches() {
+  try {
+    return JSON.parse(localStorage.getItem('partbase_recent_queries') || '[]');
+  } catch (e) {
+    return [];
+  }
+}
