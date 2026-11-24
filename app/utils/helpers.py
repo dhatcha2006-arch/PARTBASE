@@ -122,3 +122,8 @@ def format_inr(amount):
 
     prefix = "-₹" if val < 0 else "₹"
     return f"{prefix}{formatted}"
+
+
+def log_telemetry_event(event_name, data=None):
+    """Log lightweight client/server telemetry event for local monitoring."""
+    return {"event": event_name, "data": data or {}}
