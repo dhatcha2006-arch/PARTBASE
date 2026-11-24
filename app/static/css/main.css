@@ -1092,3 +1092,19 @@ a:hover {
 .lime-border-glow {
   box-shadow: 0 0 15px rgba(198, 244, 50, 0.15);
 }
+
+/* Bookmark button styling */
+.btn-bookmark {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-bookmark:hover, .btn-bookmark.active {
+  background: rgba(198, 244, 50, 0.15);
+  border-color: #C6F432;
+  color: #C6F432;
+}
