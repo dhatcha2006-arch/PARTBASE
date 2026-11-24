@@ -61,3 +61,10 @@ Commit messages should follow Conventional Commits:
 - `test(scope): ...` for tests
 - `docs(scope): ...` for documentation
 - `refactor(scope): ...` for code quality improvements
+
+
+## Pull Request Guidelines
+
+1. Ensure branch names follow `feat/<feature-slug>` or `fix/<fix-slug>`.
+2. All commits must include conventional commit prefixes.
+3. Test suite must pass 100% via `pytest`.
