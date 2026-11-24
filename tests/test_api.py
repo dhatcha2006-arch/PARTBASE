@@ -46,3 +46,11 @@ def test_api_health_endpoint(client):
     assert payload["data"]["status"] == "healthy"
     assert payload["data"]["service"] == "partbase"
     assert payload["data"]["version"] == "1.2.0"
+
+def test_api_locations_endpoint(client):
+    res = client.get('/api/locations')
+    assert res.status_code == 200
+    assert res.is_json
+    payload = res.get_json()
+    assert payload["ok"] is True
+    assert "Velachery" in payload["data"]["zones"]
