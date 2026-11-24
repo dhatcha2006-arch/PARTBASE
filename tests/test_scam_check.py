@@ -44,3 +44,16 @@ def test_scam_check_tanglish_and_tamil():
         details="Fees katunga first interviewku."
     )
     assert scam2["ok"] is False
+
+def test_scam_check_crypto_and_telegram():
+    res1 = ScamCheckService.check_text("Social Media Helper", "Earn ₹5000 per day by completing telegram tasks")
+    assert res1["ok"] is False
+    assert any("telegram" in flag.lower() for flag in res1["flags"])
+
+    res2 = ScamCheckService.check_text("Online Assistant", "Deposit USDT to binance account for verification")
+    assert res2["ok"] is False
+    assert any("crypto" in flag.lower() for flag in res2["flags"])
+
+def test_scam_check_investment_patterns():
+    res = ScamCheckService.check_text("Part-time Investor", "Guaranteed return of ₹2000 daily with small advance")
+    assert res["ok"] is False
