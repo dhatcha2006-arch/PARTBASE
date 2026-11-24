@@ -1,6 +1,6 @@
 # PARTBASE — Hyper-local Micro-job Platform for Chennai
 
-> Connecting neighborhood shops with nearby students and homemakers in Chennai (covering **OMR** and **Anna Nagar**) for same-day, flexible micro-jobs.
+> Connecting neighborhood shops with nearby students and homemakers in Chennai (covering **OMR**, **Anna Nagar**, **Velachery**, and **Adyar**) for same-day, flexible micro-jobs.
 
 [![Flask](https://img.shields.io/badge/Flask-3.1-blue.svg)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)

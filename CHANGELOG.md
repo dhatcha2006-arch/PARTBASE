@@ -2,6 +2,15 @@
 
 All notable changes to the PARTBASE hyper-local micro-job platform are documented here.
 
+## [v1.2.0] - 2026-11-24
+
+### Added
+- **Expanded Chennai Clusters**: Added geographic boundary support and Haversine routing for Velachery, Adyar, and T. Nagar.
+- **REST Health API**: Introduced `/api/health` providing service availability, telemetry, and system uptime.
+- **Safety Scanner Expansion**: Extended scam detection rules for cryptocurrency fee schemes and fraudulent task patterns.
+- **Bilingual Coverage**: Added localized Tamil dictionary support for retail assistant, shelf stocker, and billing roles.
+- **PWA v3 Cache**: Upgraded service worker caching strategy to `partbase-v3`.
+
 ## [v1.1.0] - 2026-11-23
 
 ### Changed
