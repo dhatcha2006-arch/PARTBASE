@@ -100,3 +100,24 @@ In case of error:
     }
   }
   ```
+
+
+## Health & Diagnostics Endpoints
+
+### 5. Service Health Check
+- **Endpoint**: `GET /api/health`
+- **Description**: Returns live service uptime status, version identifier, and ISO UTC timestamp.
+
+**Response (200 OK):**
+```json
+{
+  "ok": true,
+  "data": {
+    "status": "healthy",
+    "service": "partbase",
+    "version": "1.2.0",
+    "timestamp": "2026-11-24T09:30:00Z"
+  },
+  "message": "PARTBASE micro-job API is operating nominally"
+}
+```
