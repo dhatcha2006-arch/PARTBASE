@@ -17,6 +17,9 @@ SCAM_PATTERNS = [
     (r"\b(rs|₹)\.?\s*\d+\s+before\b", "pay before joining"),
     (r"\b(gpay|phonepe|paytm|upi)\s+before\b", "UPI payment before work"),
     (r"\bpay\s+via\s+(gpay|phonepe|paytm|upi)\b", "advance UPI request"),
+    (r"\b(crypto|bitcoin|usdt|binance)\b", "cryptocurrency advance fee"),
+    (r"\b(telegram\s+tasks?|like\s+and\s+subscribe\s+tasks?)\b", "telegram task scam"),
+    (r"\b(investment|guaranteed\s+return|double\s+money)\b", "investment return scam"),
 
     # Work From Home Typing Scam combinations
     (r"work\s+from\s+home\s+typing.*(fee|pay|deposit|charge|rs|₹)", "typing job asking for money"),

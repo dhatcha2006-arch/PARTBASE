@@ -63,3 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Quick filter tag selector for shifts
+document.addEventListener("DOMContentLoaded", function () {
+  const quickShiftPills = document.querySelectorAll(".badge-shift-quick");
+  quickShiftPills.forEach(pill => {
+    pill.style.cursor = "pointer";
+    pill.title = "Click to filter quick shifts";
+  });
+});

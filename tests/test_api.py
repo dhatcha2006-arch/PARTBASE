@@ -35,3 +35,14 @@ def test_api_scam_check(client):
     assert response.is_json
     data = response.get_json()
     assert data["ok"] is False or len(data.get("data", {}).get("flags", [])) > 0
+
+def test_api_health_endpoint(client):
+    """Test the /api/health status endpoint."""
+    response = client.get('/api/health')
+    assert response.status_code == 200
+    assert response.is_json
+    payload = response.get_json()
+    assert payload["ok"] is True
+    assert payload["data"]["status"] == "healthy"
+    assert payload["data"]["service"] == "partbase"
+    assert payload["data"]["version"] == "1.2.0"

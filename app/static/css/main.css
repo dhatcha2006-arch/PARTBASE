@@ -1075,3 +1075,53 @@ a:hover {
 .accordion-button:not(.collapsed) { box-shadow: none; }
 .accordion-button::after { filter: invert(1); }
 .tooltip { --bs-tooltip-bg: #FFFFFF; --bs-tooltip-color: #0B0B0C; }
+
+/* Enhanced Shift Pill and Lime Border Glow */
+.badge-shift-quick {
+  background: rgba(198, 244, 50, 0.08);
+  border: 1px solid rgba(198, 244, 50, 0.25);
+  color: #C6F432 !important;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+.badge-shift-quick:hover {
+  background: rgba(198, 244, 50, 0.18);
+  border-color: #C6F432;
+  box-shadow: 0 0 10px rgba(198, 244, 50, 0.2);
+}
+.lime-border-glow {
+  box-shadow: 0 0 15px rgba(198, 244, 50, 0.15);
+}
+
+/* Bookmark button styling */
+.btn-bookmark {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-bookmark:hover, .btn-bookmark.active {
+  background: rgba(198, 244, 50, 0.15);
+  border-color: #C6F432;
+  color: #C6F432;
+}
+
+/* Employer candidate review badges */
+.employer-candidate-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  background: rgba(198, 244, 50, 0.1);
+  color: #C6F432;
+  border: 1px solid rgba(198, 244, 50, 0.25);
+}
+.applicant-status-pill {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}

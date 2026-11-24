@@ -92,3 +92,12 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Hero live badge pulse effect */
+.hero-live-badge {
+  box-shadow: 0 0 12px rgba(198, 244, 50, 0.2);
+  transition: transform 0.2s ease;
+}
+.hero-live-badge:hover {
+  transform: translateY(-1px);
+}

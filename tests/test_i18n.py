@@ -57,3 +57,16 @@ def test_set_language_endpoint(client):
     assert res.status_code == 200
     with client.session_transaction() as sess:
         assert sess.get("lang") == "en"
+
+def test_expanded_job_categories_tamil(app):
+    with app.test_request_context("/"):
+        session["lang"] = "ta"
+        assert translate_category("shelf_stocker") == "பொருட்கள் அடுக்குபவர்"
+        assert translate_category("billing_clerk") == "பில்லிங் எழுத்தர்"
+
+def test_ui_saved_jobs_translation(app):
+    with app.test_request_context("/"):
+        session["lang"] = "ta"
+        assert t("saved_jobs") == "சேமிக்கப்பட்ட வேலைகள்"
+        session["lang"] = "en"
+        assert t("saved_jobs") == "Saved Jobs"

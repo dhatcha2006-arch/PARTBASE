@@ -71,3 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// Saved Jobs Client-Side Bookmark Helper
+function toggleSaveJob(jobId) {
+  try {
+    let saved = JSON.parse(localStorage.getItem('partbase_saved_jobs') || '[]');
+    const idx = saved.indexOf(jobId);
+    if (idx > -1) {
+      saved.splice(idx, 1);
+    } else {
+      saved.push(jobId);
+    }
+    localStorage.setItem('partbase_saved_jobs', JSON.stringify(saved));
+    return saved.includes(jobId);
+  } catch (e) {
+    return false;
+  }
+}

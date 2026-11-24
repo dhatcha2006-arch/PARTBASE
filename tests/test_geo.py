@@ -20,3 +20,17 @@ def test_build_google_maps_url():
     assert "https://www.google.com/maps/dir/?api=1" in url
     assert "travelmode=walking" in url
     assert "Sri+Murugan+Tailors" in url or "Sri%20Murugan" in url or "Sri" in url
+
+def test_haversine_distance_velachery_to_adyar():
+    from app.utils.geo import CHENNAI_AREAS
+    v_lat, v_lon = CHENNAI_AREAS["Velachery"]
+    a_lat, a_lon = CHENNAI_AREAS["Adyar"]
+    dist = haversine_distance(v_lat, v_lon, a_lat, a_lon)
+    assert 4.0 <= dist <= 6.5
+
+def test_chennai_areas_catalog():
+    from app.utils.geo import CHENNAI_AREAS, get_area_coordinates
+    assert "Velachery" in CHENNAI_AREAS
+    assert "Adyar" in CHENNAI_AREAS
+    lat, lon = get_area_coordinates("Velachery")
+    assert lat == 12.9815
