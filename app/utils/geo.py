@@ -31,3 +31,17 @@ def build_google_maps_url(destination_name, area_name="Chennai"):
     dest_str = f"{destination_name} {area_name} Chennai".strip()
     encoded_dest = quote_plus(dest_str)
     return f"https://www.google.com/maps/dir/?api=1&destination={encoded_dest}&travelmode=walking"
+
+# Curated coordinates for Chennai pilot coverage areas
+CHENNAI_AREAS = {
+    "Anna Nagar": (13.0850, 80.2101),
+    "Thoraipakkam": (12.9249, 80.2272),
+    "Neelankarai": (12.9492, 80.2547),
+    "Velachery": (12.9815, 80.2180),
+    "Adyar": (13.0012, 80.2565),
+    "T. Nagar": (13.0418, 80.2341)
+}
+
+def get_area_coordinates(area_name):
+    """Retrieve latitude and longitude for a known Chennai area."""
+    return CHENNAI_AREAS.get(area_name, (13.0827, 80.2707))
