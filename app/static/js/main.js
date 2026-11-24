@@ -88,3 +88,14 @@ function toggleSaveJob(jobId) {
     return false;
   }
 }
+
+// Quick escape key dismiss listener
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const activeModal = document.querySelector('.modal.show');
+    if (activeModal && window.bootstrap) {
+      const modalInstance = bootstrap.Modal.getInstance(activeModal);
+      if (modalInstance) modalInstance.hide();
+    }
+  }
+});
