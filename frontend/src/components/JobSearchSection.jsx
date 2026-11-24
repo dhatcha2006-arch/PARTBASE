@@ -120,7 +120,7 @@ export default function JobSearchSection({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search cafe, Decathlon, barista, night shift, or area..."
+              placeholder="Search cafe, Decathlon, barista, night shift, or area..." aria-label="Search Chennai local jobs"
               className="w-full bg-[#111113] border border-white/10 focus:border-lime rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-muted focus:outline-none transition-colors"
             />
           </div>
